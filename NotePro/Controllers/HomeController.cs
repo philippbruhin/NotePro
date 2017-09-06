@@ -17,14 +17,7 @@ namespace NotePro.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Können wir von mir aus drin lassen und etwas über uns schreiben.";
 
             return View();
         }
