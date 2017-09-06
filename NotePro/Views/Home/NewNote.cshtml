@@ -10,30 +10,29 @@
     <form class="note-form" asp-action="NoteForm" method="post">
         <div asp-validation-summary="All"></div>
         <div class="form-group">
-            <label asp-for="Title">Your name:</label>
+            <label asp-for="Title">Title:</label>
             <input class="form-control" asp-for="Title" />
         </div>
         <div class="form-group">
-            <label asp-for="Description">Your email:</label>
+            <label asp-for="Description">Description:</label>
             <input class="form-control" asp-for="Description" />
         </div>
         <div class="form-group">
-            <label asp-for="Priority">Your phone:</label>
+            <label asp-for="Priority">Priority:</label>
             <input class="form-control" asp-for="Priority" />
         </div>
         <div class="form-group">
-            <label asp-for="Priority">Your phone:</label>
-            <input class="form-control" asp-for="Priority" />
-        </div>
-        <div class="form-group">
-            <label asp-for="Duedate">Your phone:</label>
-            <input class="form-control" asp-for="Duedate" />
+            <label asp-for="Duedate">Duedate:</label>
+            <div class="input-group date" id="datetimepicker">
+                <input type="text" class="form-control" asp-for="Duedate" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
         </div>
 
         <div class="text-center">
-            <button class="btn btn-primary" type="submit">
-                Submit RSVP
-            </button>
+            <button class="btn btn-primary" type="submit">Submit note</button>
         </div>
     </form>
 </div>
