@@ -16,7 +16,7 @@ namespace NotePro.Models
                 return notes;
             }
         }
-        public static void AddResponse(Note note)
+        public static void AddNote(Note note)
         {
             notes.Add(note);
         }

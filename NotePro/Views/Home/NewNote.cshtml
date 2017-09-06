@@ -1,0 +1,39 @@
+﻿@model NotePro.Models.Note
+
+@{
+    ViewData["Title"] = "Add a new note";
+}
+
+
+
+<div class="row">
+    <form class="note-form" asp-action="NoteForm" method="post">
+        <div asp-validation-summary="All"></div>
+        <div class="form-group">
+            <label asp-for="Title">Your name:</label>
+            <input class="form-control" asp-for="Title" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Description">Your email:</label>
+            <input class="form-control" asp-for="Description" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Priority">Your phone:</label>
+            <input class="form-control" asp-for="Priority" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Priority">Your phone:</label>
+            <input class="form-control" asp-for="Priority" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Duedate">Your phone:</label>
+            <input class="form-control" asp-for="Duedate" />
+        </div>
+
+        <div class="text-center">
+            <button class="btn btn-primary" type="submit">
+                Submit RSVP
+            </button>
+        </div>
+    </form>
+</div>

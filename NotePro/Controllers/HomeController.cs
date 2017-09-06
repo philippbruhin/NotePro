@@ -15,6 +15,33 @@ namespace NotePro.Controllers
             return View();
         }
 
+        public IActionResult NewNote()
+        {
+            return View();
+        }
+
+
+        [HttpGet]
+        public ViewResult NoteForm()
+        {
+            return View("NewNote");
+        }
+
+        [HttpPost]
+        public ViewResult NoteForm(Note note)
+        {
+            if (ModelState.IsValid)
+            {
+                Repository.AddNote(note);
+                return View("index", note);
+            }
+            else
+            {
+                // there is a validation error
+                return View("NewNote");
+            }
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Können wir von mir aus drin lassen und etwas über uns schreiben.";
