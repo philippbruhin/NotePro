@@ -1,4 +1,2 @@
 ﻿// Write your JavaScript code.
-$(function () {
-    $('#datetimepicker').datetimepicker();
-});
+//$('.datepicker').pickadate();
