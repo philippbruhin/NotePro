@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="stylesheet" href="~/lib/MDBootstrap/css/mdb.css" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
@@ -17,48 +18,43 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/lib/MDBootstrap/css/mdb.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
     </environment>
 </head>
 <body>
 
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark indigo">
-
     <!-- Navbar brand -->
-    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">NotePro</a>
-
+    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><i class="fa fa-sticky-note-o" aria-hidden="true"></i>&nbsp;NotePro</a>
     <!-- Collapse button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-
     <!-- Collapsible content -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
+        
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="NewNote">New Note</a></li>
             <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a></li>
         </ul>
         <!-- Links -->
 
-        <!-- Search form -->
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        </form>
+        <!-- New Note-->
+        <a class="btn btn-default" asp-area="" asp-controller="Home" asp-action="NewNote" role="button" >New Note</a>
     </div>
     <!-- Collapsible content -->
-
 </nav>
 <!--/.Navbar-->
 
 <div class="container body-content">
     @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; 2017 - NotePro</p>
-    </footer>
 </div>
+    
+<footer class="footer clearfix">
+    <p class="float-left">&copy; 2017 - NotePro by Leandro Rosenfelder & Philipp Bruhin</p>
+    <a href="https://www.hsr.ch/" target="_blank"><img src="~/images/logo_hsr.svg" class="hsr-logo float-right" /></a>
+</footer>
 
 <environment include="Development">
     <script src="~/lib/jquery/dist/jquery.js"></script>

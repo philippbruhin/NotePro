@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 namespace NotePro.Models
 {
@@ -20,15 +22,18 @@ namespace NotePro.Models
         }
 
         [Required(ErrorMessage = "Please enter a title for this task.")]
+        [StringLength(60, MinimumLength = 3)]
         public string Title { get; set; }
 
         [Required(ErrorMessage = "Please enter a description for this task.")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$"), StringLength(500)]
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Please enter a priority for this task.")]
-        public string Priority { get; set; }
+        public IEnumerable<Priority> Priority { get; set; }
 
         [Required(ErrorMessage = "Please enter a duedate for this task.")]
+        [DataType(DataType.Date)]
         public DateTime Duedate { get; set; }
 
 
