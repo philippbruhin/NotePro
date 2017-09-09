@@ -1,18 +1,26 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using NotePro.Models;
+using NotePro.Services;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using NotePro.Models;
 
 namespace NotePro.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+
+        private readonly INoteData noteData;
+
+        public HomeController(INoteData _noteData)
         {
-            return View();
+            noteData = _noteData ?? throw new ArgumentNullException(nameof(_noteData));
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            return View("NotesList", await noteData.GetNotesAsync());
         }
 
         public IActionResult NewNote()
@@ -20,33 +28,49 @@ namespace NotePro.Controllers
             return View();
         }
 
-
         [HttpGet]
-        public ViewResult NoteForm()
+        public async Task<IActionResult> EditNote(Guid uid)
         {
-            return View("NewNote");
+            return View("EditNote", await noteData.GetNoteAsync(uid));
         }
 
         [HttpPost]
-        public ViewResult NoteForm(Note note)
+        public async Task<ActionResult> AddNote(Note note)
         {
             if (ModelState.IsValid)
             {
-                Repository.AddNote(note);
-                return View("index", note);
+                await noteData.AddNoteAsync(note);
+                return RedirectToAction("Index"); 
             }
             else
             {
-                // there is a validation error
                 return View("NewNote");
             }
         }
 
-        public IActionResult About()
+        //[HttpPut]
+        public async Task<ActionResult> UpdateNote(Note note)
         {
-            ViewData["Message"] = "Können wir von mir aus drin lassen und etwas über uns schreiben.";
+            if (ModelState.IsValid)
+            {
+                await noteData.UpdateNoteAsync(note);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("EditNote");
+            }
+        }
 
-            return View();
+        [HttpGet] //todo only hack, potential security hole
+        public async Task<ActionResult> DeleteNote(Guid uid)
+        {
+            if (uid == null)
+            {
+                return BadRequest();
+            }
+            await noteData.RemoveNoteAsync(uid);
+            return RedirectToAction("Index"); 
         }
 
         public IActionResult Error()

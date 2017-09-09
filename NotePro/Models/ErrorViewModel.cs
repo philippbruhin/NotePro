@@ -1,5 +1,3 @@
-using System;
-
 namespace NotePro.Models
 {
     public class ErrorViewModel

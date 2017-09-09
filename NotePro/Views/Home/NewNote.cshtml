@@ -1,12 +1,20 @@
-﻿@model NotePro.Models.Note
+﻿@model Note
 
-@{
-    ViewData["Title"] = "Add a new note";
+@{ // TODO USE PROPER HTTP METHOD
+    //    ViewData["Title"] = "Add a new note";
+    //    var aspAction = "UpdateNote";
+    //    if (Model == null)
+    //    {
+    //        aspAction = "AddNote";
+    //    }
+    var aspAction = "AddNote";
 }
 
-<form class="note-form" asp-action="NoteForm" method="post">   
+
+<form class="note-form" asp-action="@aspAction" asp-method="post">  
 
     <div asp-validation-summary="All"></div>
+    <input type="hidden" asp-for="NoteId" />
 
     <div class="md-form">
         <i class="fa fa-tag prefix grey-text" data-toggle="tooltip" data-placement="right" title="Every note needs a title"></i>
@@ -16,7 +24,7 @@
         
     <div class="md-form">
         <i class="fa fa-pencil prefix grey-text" data-toggle="tooltip" data-placement="right" title="Add a short description of your note."></i>
-        <textarea class="md-textarea" asp-for="Description" class="md-textarea" style="height: 100px"></textarea>
+        <textarea class="md-textarea" asp-for="Description" style="height: 100px"></textarea>
         <label asp-for="Description">Description:</label>
     </div>
         
@@ -24,35 +32,34 @@
         <div class="col-12 col-md-6">
             <div class="md-form">
                 <i class="fa fa-clock-o prefix grey-text" data-toggle="tooltip" data-placement="right" title="Add a duedate for every note."></i>
-                <input class="form-control" asp-for="Duedate" />
-                <label asp-for="Duedate">Duedate:</label>
+                <input class="form-control" asp-for="DueDate" />
+                <label asp-for="DueDate">Duedate:</label>
             </div>              
         </div>
 
         <div class="col-12 col-md-6 clearfix">
-            <!-- ToDo Add asp.net core code -->
             <span class="priority-title float-left" data-toggle="tooltip" data-placement="top" title="Add an importance to your note from 1 to 5 stars.">Importance:</span>
             <div class="rating float-left">
                 <label>
-                    <input type="radio" name="rating" value="5" title="5 stars"> 5
+                    <input asp-for="Priority" type="radio" name="rating" value="5" title="5 stars"> 5
                 </label>
                 <label>
-                    <input type="radio" name="rating" value="4" title="4 stars"> 4
+                    <input asp-for="Priority" type="radio" name="rating" value="4" title="4 stars"> 4
                 </label>
                 <label>
-                    <input type="radio" name="rating" value="3" title="3 stars"> 3
+                    <input asp-for="Priority" type="radio" name="rating" value="3" title="3 stars"> 3
                 </label>
                 <label>
-                    <input type="radio" name="rating" value="2" title="2 stars"> 2
+                    <input asp-for="Priority" type="radio" name="rating" value="2" title="2 stars"> 2
                 </label>
                 <label>
-                    <input type="radio" name="rating" value="1" title="1 star"> 1
+                    <input asp-for="Priority" type="radio" name="rating" value="1" title="1 star"> 1
                 </label>
             </div>                
         </div>
     </div>
 
     <div class="submit-note text-center">
-        <button class="btn btn-default" type="submit">Submit note <i class="fa fa-paper-plane-o ml-1"></i></button>
+        <button class="btn btn-default" type="submit">Save<i class="fa fa-paper-plane-o ml-1"></i></button>
     </div>
 </form>
