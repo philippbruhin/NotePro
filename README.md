@@ -10,3 +10,6 @@ HSR (German: Hochschule für Technik Rapperswil) or [University of Applied Scien
 * [ASP.NET Core](https://github.com/aspnet/Home) - ASP.NET Core is a lean and composable framework for building web and cloud applications.
 * [Twitter Bootstrap 4](https://getbootstrap.com/) - The most popular HTML, CSS, and JS library in the world.
 * [MD Bootstrap](https://mdbootstrap.com/) - Material Design for Bootstrap - Powerful and free Material Design UI KIT.
+* [jQuery](https://jquery.com/) - The Write Less, Do More, JavaScript Library.
+* [Popper.js](https://popper.js.org/) - A kickass library used to manage poppers in web applications.
+* [Font Awesome](http://fontawesome.io/) - The iconic font and CSS toolkit.
