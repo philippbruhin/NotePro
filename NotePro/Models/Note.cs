@@ -26,6 +26,9 @@ namespace NotePro.Models
         [DataType(DataType.Date)]
         public DateTime DueDate { get; set; }
 
+        [Required(ErrorMessage = "Please specify if task is finished or not.")]
+        public bool? Finished { get; set; }
+
         public Note()
         {
             NoteId = Guid.NewGuid();

@@ -17,29 +17,29 @@
     <input type="hidden" asp-for="NoteId" />
 
     <div class="md-form">
-        <i class="fa fa-tag prefix grey-text" data-toggle="tooltip" data-placement="right" title="Every note needs a title"></i>
+        <i class="fa fa-tag prefix grey-text"></i>
         <input class="form-control" asp-for="Title"/>
-        <label asp-for="Title">Title:</label>
+        <label asp-for="Title" data-toggle="tooltip" data-placement="top" title="Every note needs a title">Title:</label>
     </div>
         
     <div class="md-form">
-        <i class="fa fa-pencil prefix grey-text" data-toggle="tooltip" data-placement="right" title="Add a short description of your note."></i>
+        <i class="fa fa-pencil prefix grey-text"></i>
         <textarea class="md-textarea" asp-for="Description" style="height: 100px"></textarea>
-        <label asp-for="Description">Description:</label>
+        <label asp-for="Description" data-toggle="tooltip" data-placement="top" title="Add a short description of your note.">Description:</label>
     </div>
         
     <div class="row">
-        <div class="col-12 col-md-6">
-            <div class="md-form">
-                
-                <i class="fa fa-clock-o prefix grey-text" data-toggle="tooltip" data-placement="right" title="Add a duedate for every note."></i>
-                <input class="form-control" asp-for="DueDate"/>
-                <label asp-for="DueDate">Duedate:</label>
-            </div>  
+        <div class="col-12 col-md-4">
             
+            <div class="md-form">
+                <i class="fa fa-clock-o prefix grey-text"></i>
+                <input class="form-control" asp-for="DueDate"/>
+                <label asp-for="DueDate" data-toggle="tooltip" data-placement="top" title="Add a duedate for every note.">Duedate:</label>
+            </div>
+
         </div>
 
-        <div class="col-12 col-md-6 clearfix">
+        <div class="col-12 col-md-4 clearfix">
             
             <span class="priority-title float-left" data-toggle="tooltip" data-placement="top" title="Add an importance to your note from 1 to 5 stars.">Importance:</span>
             <div class="rating float-left">
@@ -60,6 +60,15 @@
                 </label>
             </div>
 
+        </div>
+        
+        <div class="col-12 col-md-4 clearfix">
+        
+            <div class="form-group finished">
+                <input type="checkbox" class="filled-in" id="checkbox2">
+                <label for="checkbox2" data-toggle="tooltip" data-placement="top" title="Check as soon as task is finished.">Finished</label>
+            </div>
+        
         </div>
 
     </div>
