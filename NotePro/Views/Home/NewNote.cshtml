@@ -31,13 +31,16 @@
     <div class="row">
         <div class="col-12 col-md-6">
             <div class="md-form">
+                
                 <i class="fa fa-clock-o prefix grey-text" data-toggle="tooltip" data-placement="right" title="Add a duedate for every note."></i>
-                <input class="form-control" asp-for="DueDate" />
+                <input class="form-control" asp-for="DueDate"/>
                 <label asp-for="DueDate">Duedate:</label>
-            </div>              
+            </div>  
+            
         </div>
 
         <div class="col-12 col-md-6 clearfix">
+            
             <span class="priority-title float-left" data-toggle="tooltip" data-placement="top" title="Add an importance to your note from 1 to 5 stars.">Importance:</span>
             <div class="rating float-left">
                 <label>
@@ -55,8 +58,10 @@
                 <label>
                     <input asp-for="Priority" type="radio" name="rating" value="1" title="1 star"> 1
                 </label>
-            </div>                
+            </div>
+
         </div>
+
     </div>
 
     <div class="submit-note text-center">
