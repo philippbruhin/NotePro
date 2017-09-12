@@ -90,7 +90,8 @@ input[type=date]:focus {
 .finished {
     position: relative;
     margin-bottom: 0;
-    margin-top: 0.7em;
+    margin-top: 0.7
+    em;
     color: #757575;
 }
 

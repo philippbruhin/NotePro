@@ -20,16 +20,15 @@ namespace NotePro.Models
         [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$"), StringLength(500)]
         public string Description { get; set; }
 
-        //[Required(ErrorMessage = "Please enter a priority for this note.")]
-        //[Range(1,5)]  //@todo: does not work yet
+        [Required(ErrorMessage = "Please enter a priority for this note.")]
+        [Range(1,5)]  //@todo: does not work yet
         public int Priority { get; set; }
 
         [Required(ErrorMessage = "Please enter a due date for this note.")]
         [DataType(DataType.Date)]
         public DateTime DueDate { get; set; }
 
-        //[Required(ErrorMessage = "Please specify if task is finished or not.")]
-        public bool? Finished { get; set; }
+        public bool Finished { get; set; }
 
         public Note()
         {
