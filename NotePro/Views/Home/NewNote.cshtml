@@ -1,20 +1,20 @@
 ﻿@model Note
 
 @{ // TODO USE PROPER HTTP METHOD
-    //    ViewData["Title"] = "Add a new note";
-    //    var aspAction = "UpdateNote";
-    //    if (Model == null)
-    //    {
-    //        aspAction = "AddNote";
-    //    }
-    var aspAction = "AddNote";
+//    ViewData["Title"] = "Add a new note";
+//    var aspAction = "UpdateNote";
+//    if (Model == null)
+//    {
+//        aspAction = "AddNote";
+//    }
+//var aspAction = "AddNote";
 }
 
 
-<form class="note-form" asp-action="@aspAction" asp-method="post">  
+<form class="note-form" asp-action="AddNote" asp-method="post">  
 
     <div asp-validation-summary="All"></div>
-    <input type="hidden" asp-for="NoteId" />
+    <!--<input type="hidden" asp-for="Id" />-->
 
     <div class="md-form">
         <i class="fa fa-tag prefix grey-text"></i>
@@ -44,19 +44,19 @@
             <span class="priority-title float-left" data-toggle="tooltip" data-placement="top" title="Add an importance to your note from 1 to 5 stars.">Importance:</span>
             <div class="rating float-left">
                 <label>
-                    <input asp-for="Priority" type="radio" name="rating" value="5" title="5 stars"> 5
+                    <input asp-for="Priority" type="radio" name="Priority" value="5" title="5 stars"> 5
                 </label>
                 <label>
-                    <input asp-for="Priority" type="radio" name="rating" value="4" title="4 stars"> 4
+                    <input asp-for="Priority" type="radio" name="Priority" value="4" title="4 stars"> 4
                 </label>
                 <label>
-                    <input asp-for="Priority" type="radio" name="rating" value="3" title="3 stars"> 3
+                    <input asp-for="Priority" type="radio" name="Priority" value="3" title="3 stars"> 3
                 </label>
                 <label>
-                    <input asp-for="Priority" type="radio" name="rating" value="2" title="2 stars"> 2
+                    <input asp-for="Priority" type="radio" name="Priority" value="2" title="2 stars"> 2
                 </label>
                 <label>
-                    <input asp-for="Priority" type="radio" name="rating" value="1" title="1 star"> 1
+                    <input asp-for="Priority" type="radio" name="Priority" value="1" title="1 star"> 1
                 </label>
             </div>
 

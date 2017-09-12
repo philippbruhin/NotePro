@@ -1,12 +1,14 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Threading;
 
 namespace NotePro.Models
 {
     public class Note
     {
+        static long IdSequence;
 
-        public Guid NoteId { get; private set; }
+        public long Id { get;  set; }
 
         public DateTime CreationDate { get; private set; }
 
@@ -18,20 +20,20 @@ namespace NotePro.Models
         [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$"), StringLength(500)]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "Please enter a priority for this note.")]
-        //[Range(1,5)] @todo: does not work yet
+        //[Required(ErrorMessage = "Please enter a priority for this note.")]
+        //[Range(1,5)]  //@todo: does not work yet
         public int Priority { get; set; }
 
         [Required(ErrorMessage = "Please enter a due date for this note.")]
         [DataType(DataType.Date)]
         public DateTime DueDate { get; set; }
 
-        [Required(ErrorMessage = "Please specify if task is finished or not.")]
+        //[Required(ErrorMessage = "Please specify if task is finished or not.")]
         public bool? Finished { get; set; }
 
         public Note()
         {
-            NoteId = Guid.NewGuid();
+            Id = Interlocked.Increment(ref IdSequence);
             CreationDate = DateTime.Now;
         }
 

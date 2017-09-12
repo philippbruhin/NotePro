@@ -10,11 +10,11 @@ namespace NotePro.Services
     {
         Task AddNoteAsync(Note note);
 
-        Task<Note> GetNoteAsync(Guid uid);
+        Task<Note> GetNoteAsync(long id);
 
         Task<IEnumerable<Note>> GetNotesAsync();
 
-        Task RemoveNoteAsync(Guid uid);
+        Task RemoveNoteAsync(long id);
 
         Task UpdateNoteAsync(Note note);
     }

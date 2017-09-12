@@ -22,9 +22,9 @@ namespace NotePro.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<Note> GetNoteAsync(Guid uid)
+        public async Task<Note> GetNoteAsync(long id)
         {
-            return await dbContext.Notes.FindAsync(uid);
+            return await dbContext.Notes.FindAsync(id);
         }
 
         public async Task<IEnumerable<Note>> GetNotesAsync()
@@ -32,9 +32,9 @@ namespace NotePro.Services
             return await dbContext.Notes.ToListAsync();
         }
 
-        public async Task RemoveNoteAsync(Guid uid)
+        public async Task RemoveNoteAsync(long id)
         {
-            var note = await GetNoteAsync(uid);
+            var note = await GetNoteAsync(id);
             dbContext.Remove(note);
             await dbContext.SaveChangesAsync();
         }

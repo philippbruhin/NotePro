@@ -29,9 +29,9 @@ namespace NotePro.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditNote(Guid uid)
+        public async Task<IActionResult> EditNote(long id)
         {
-            return View("EditNote", await noteData.GetNoteAsync(uid));
+            return View("EditNote", await noteData.GetNoteAsync(id));
         }
 
         [HttpPost]
@@ -48,7 +48,7 @@ namespace NotePro.Controllers
             }
         }
 
-        //[HttpPut]
+        [HttpPost]
         public async Task<ActionResult> UpdateNote(Note note)
         {
             if (ModelState.IsValid)
@@ -63,13 +63,13 @@ namespace NotePro.Controllers
         }
 
         [HttpGet] //todo only hack, potential security hole
-        public async Task<ActionResult> DeleteNote(Guid uid)
+        public async Task<ActionResult> DeleteNote(long id)
         {
-            if (uid == null)
+            if (id == 0)
             {
                 return BadRequest();
             }
-            await noteData.RemoveNoteAsync(uid);
+            await noteData.RemoveNoteAsync(id);
             return RedirectToAction("Index"); 
         }
 

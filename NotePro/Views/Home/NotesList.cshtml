@@ -70,10 +70,10 @@
                 @Html.DisplayFor(modelItem => item.DueDate)
             </td>
             <td>
-                <a asp-action="EditNote" asp-route-uid="@item.NoteId">Edit</a> |
-                <!--<a asp-action="Details" asp-route-uid="@item.NoteId">Details</a> |-->
+                <a asp-action="EditNote" asp-route-id="@item.Id">Edit</a> |
+                <!--<a asp-action="Details" asp-route-uid=">Details</a> |-->
                 <!--todo handle Delete with proper HTTP Method-->
-                <a asp-action="DeleteNote" asp-route-uid="@item.NoteId" asp-method="DELETE">Delete</a> 
+                <a asp-action="DeleteNote" asp-route-id="@item.Id" asp-method="DELETE">Delete</a> 
             </td>
             </tr>
         }
