@@ -34,7 +34,7 @@
             
             <div class="md-form">
                 <i class="fa fa-clock-o prefix grey-text"></i>
-                <input class="form-control" asp-for="DueDate"/>
+                <input placeholder="Selected date" id="date-picker-example" class="form-control datepicker" asp-for="DueDate"/>
                 <label asp-for="DueDate" data-toggle="tooltip" data-placement="top" title="Add a duedate for every note.">Duedate:</label>
             </div>
 
@@ -79,5 +79,13 @@
     </div>
 </form>
 @section Scripts {
+    <script src="~/js/picker-date.js"></script>
+    <script>
+        // Data Picker Initialization
+        $('.datepicker').pickadate({
+            formatSubmit: 'yyyy/mm/dd'
+        });
+    </script>
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
