@@ -13,8 +13,9 @@
 
 <form class="note-form" asp-action="AddNote" asp-method="post">  
 
-    <div asp-validation-summary="All"></div>
-    <!--<input type="hidden" asp-for="Id" />-->
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <hr />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="md-form">
         <i class="fa fa-tag prefix grey-text"></i>
@@ -77,3 +78,6 @@
         <button class="btn btn-default" type="submit">Save<i class="fa fa-paper-plane-o ml-1"></i></button>
     </div>
 </form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
