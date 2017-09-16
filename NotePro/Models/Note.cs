@@ -33,7 +33,7 @@ namespace NotePro.Models
 
         public Note()
         {
-            Id = Interlocked.Increment(ref IdSequence);
+            //Id = Interlocked.Increment(ref IdSequence);
             CreationDate = DateTime.Now;
         }
 
