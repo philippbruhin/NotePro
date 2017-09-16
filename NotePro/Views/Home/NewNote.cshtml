@@ -13,20 +13,18 @@
 
 <form class="note-form" asp-action="AddNote" asp-method="post">  
 
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <hr />
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
     <div class="md-form">
         <i class="fa fa-tag prefix grey-text"></i>
         <input class="form-control" asp-for="Title"/>
-        <label asp-for="Title" data-toggle="tooltip" data-placement="top" title="Every note needs a title">Title:</label>
+        <label asp-for="Title" data-toggle="tooltip" data-placement="top" title="Every note needs a title.">Title:</label>
+        <span asp-validation-for="Title" class="text-danger push-left"></span>
     </div>
         
     <div class="md-form">
         <i class="fa fa-pencil prefix grey-text"></i>
         <textarea class="md-textarea" asp-for="Description" style="height: 100px"></textarea>
         <label asp-for="Description" data-toggle="tooltip" data-placement="top" title="Add a short description of your note.">Description:</label>
+        <span asp-validation-for="Description" class="text-danger push-left"></span>
     </div>
         
     <div class="row">
@@ -36,30 +34,35 @@
                 <i class="fa fa-clock-o prefix grey-text"></i>
                 <input placeholder="Selected date" id="date-picker-example" class="form-control datepicker" asp-for="DueDate"/>
                 <label asp-for="DueDate" data-toggle="tooltip" data-placement="top" title="Add a duedate for every note.">Duedate:</label>
+                <span asp-validation-for="DueDate" class="text-danger push-left"></span>
             </div>
 
         </div>
 
-        <div class="col-12 col-md-4 clearfix">
+        <div class="col-12 col-md-4">
             
+            <div class="clearfix">
             <span class="priority-title float-left" data-toggle="tooltip" data-placement="top" title="Add an importance to your note from 1 to 5 stars.">Importance:</span>
-            <div class="rating float-left">
-                <label>
-                    <input asp-for="Priority" type="radio" name="Priority" value="5" title="5 stars"> 5
-                </label>
-                <label>
-                    <input asp-for="Priority" type="radio" name="Priority" value="4" title="4 stars"> 4
-                </label>
-                <label>
-                    <input asp-for="Priority" type="radio" name="Priority" value="3" title="3 stars"> 3
-                </label>
-                <label>
-                    <input asp-for="Priority" type="radio" name="Priority" value="2" title="2 stars"> 2
-                </label>
-                <label>
-                    <input asp-for="Priority" type="radio" name="Priority" value="1" title="1 star"> 1
-                </label>
+                <div class="rating float-left">
+                    <label>
+                        <input asp-for="Priority" type="radio" name="Priority" value="5" title="5 stars"> 5
+                    </label>
+                    <label>
+                        <input asp-for="Priority" type="radio" name="Priority" value="4" title="4 stars"> 4
+                    </label>
+                    <label>
+                        <input asp-for="Priority" type="radio" name="Priority" value="3" title="3 stars"> 3
+                    </label>
+                    <label>
+                        <input asp-for="Priority" type="radio" name="Priority" value="2" title="2 stars"> 2
+                    </label>
+                    <label>
+                        <input asp-for="Priority" type="radio" name="Priority" value="1" title="1 star"> 1
+                    </label>
+                
+                </div>
             </div>
+            <span asp-validation-for="Priority" class="text-danger"></span>
 
         </div>
         

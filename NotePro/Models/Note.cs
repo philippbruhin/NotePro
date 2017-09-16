@@ -17,11 +17,11 @@ namespace NotePro.Models
         public string Title { get; set; }
 
         [Required(ErrorMessage = "Please enter a description for this note.")]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$"), StringLength(500)]
+        [RegularExpression(@"^[a-zA-Z0-9_\s]*$"), StringLength(1000)]
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Please enter a priority for this note.")]
-        [Range(1,5)]  //@todo: does not work yet
+        [Range(1,5)]
         public int Priority { get; set; }
 
         [Required(ErrorMessage = "Please enter a due date for this note.")]
@@ -32,7 +32,6 @@ namespace NotePro.Models
 
         public Note()
         {
-            Id = Interlocked.Increment(ref IdSequence);
             CreationDate = DateTime.Now;
         }
 
