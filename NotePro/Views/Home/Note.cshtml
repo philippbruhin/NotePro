@@ -18,7 +18,7 @@
     <div class="md-form">
         <i class="fa fa-tag prefix grey-text"></i>
         <input class="form-control" asp-for="Title"/>
-        <label asp-for="Title" data-toggle="tooltip" data-placement="top" title="Every note needs a title.">Title:</label>
+        <label asp-for="Title" data-toggle="tooltip" data-placement="top" title="Every note needs a title.">@Html.DisplayNameFor(Model => Model.Title):</label>
         <span asp-validation-for="Title" class="text-danger push-left"></span>
        @{if (Model != null)
             {
@@ -30,7 +30,7 @@
     <div class="md-form">
         <i class="fa fa-pencil prefix grey-text"></i>
         <textarea class="md-textarea" asp-for="Description" style="height: 100px"></textarea>
-        <label asp-for="Description" data-toggle="tooltip" data-placement="top" title="Add a short description of your note.">Description:</label>
+        <label asp-for="Description" data-toggle="tooltip" data-placement="top" title="Add a short description of your note.">@Html.DisplayNameFor(Model => Model.Description):</label>
         <span asp-validation-for="Description" class="text-danger push-left"></span>
     </div>
         
@@ -40,7 +40,7 @@
             <div class="md-form">
                 <i class="fa fa-clock-o prefix grey-text"></i>
                 <input placeholder="Selected date" id="date-picker-example" class="form-control datepicker" asp-for="DueDate"/>
-                <label asp-for="DueDate" data-toggle="tooltip" data-placement="top" title="Add a duedate for every note.">Duedate:</label>
+                <label asp-for="DueDate" data-toggle="tooltip" data-placement="top" title="Add a due date for every note.">@Html.DisplayNameFor(Model => Model.DueDate):</label>
                 <span asp-validation-for="DueDate" class="text-danger push-left"></span>
             </div>
 
@@ -49,7 +49,7 @@
         <div class="col-12 col-md-4">
             
             <div class="clearfix">
-            <span class="priority-title float-left" data-toggle="tooltip" data-placement="top" title="Add an importance to your note from 1 to 5 stars.">Importance:</span>
+            <span class="priority-title float-left" data-toggle="tooltip" data-placement="top" title="Add an importance to your note from 1 to 5 stars.">@Html.DisplayNameFor(Model => Model.Priority):</span>
                 <div class="rating float-left">
                     <label class="@labelClassPriority5">
                         <input asp-for="Priority" type="radio" name="Priority" value="5" title="5 stars"> 5
@@ -77,7 +77,7 @@
         
             <div class="form-group finished">
                 <input type="checkbox" class="filled-in" id="checkbox2">
-                <label for="checkbox2" data-toggle="tooltip" data-placement="top" title="Check as soon as task is finished.">Finished</label>
+                <label for="checkbox2" data-toggle="tooltip" data-placement="top" title="Check as soon as task is finished.">@Html.DisplayNameFor(model => model.Finished)</label>
             </div>
         
         </div>

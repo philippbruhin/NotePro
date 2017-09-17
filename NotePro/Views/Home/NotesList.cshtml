@@ -1,57 +1,59 @@
-﻿@model IEnumerable<Note>
+﻿@using NotePro.Utilities;
 
+@model NotesListViewModel;
 
 @{
     ViewData["Title"] = "NotesList";
+    var sort0Active = Model.SortOption == SortOption.Recent ? "active" : "";
+    var sort1Active = Model.SortOption == SortOption.Oldest ? "active" : "";
+    var sort2Active = Model.SortOption == SortOption.DueDate ? "active" : "";
+    var sort3Active = Model.SortOption == SortOption.Importance ? "active" : "";
 }
 
 <h2>Note List</h2>
-<!-- TODO Checkbox buttons for sorting. Not working yet-->
+
 <div class="btn-group" data-toggle="buttons">
 
-    <label class="btn btn-default active">
-        <input class="sort" type="radio" name ="sort" id="sort0" value="0" autocomplete="off">Recent (default)
+    <label class="btn btn-default @sort0Active">
+        <input class="sort" type="radio" name ="sort" id="sort0" value="0" autocomplete="off">Recent
     </label>
 
-    <label class="btn btn-default">
+    <label class="btn btn-default @sort1Active">
         <input class="sort" type="radio" name ="sort" id="sort1" value="1" autocomplete="off">Oldest
     </label>
 
-
-    <label class="btn btn-default">
+    <label class="btn btn-default @sort2Active">
         <input class="sort" type="radio" name ="sort" id="sort2" value="2" autocomplete="off">Due Date
     </label>
 
-    <label class="btn btn-default">
+    <label class="btn btn-default @sort3Active">
         <input class="sort" type="radio" name ="sort" id="sort3" value="3" autocomplete="off">Importance
     </label>
-
 </div>
-<!-- TODO Checkbox butons for sorting. Not working yet-->
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.Notes.FirstOrDefault<Note>().Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.Notes.FirstOrDefault<Note>().Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Priority)
+                @Html.DisplayNameFor(model => model.Notes.FirstOrDefault<Note>().Priority)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreationDate)
+                @Html.DisplayNameFor(model => model.Notes.FirstOrDefault<Note>().CreationDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DueDate)
+                @Html.DisplayNameFor(model => model.Notes.FirstOrDefault<Note>().DueDate)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model) {
+        @foreach (var item in Model.Notes) {
             <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
@@ -79,11 +81,5 @@
 </table>
 
 @section Scripts {
-<script>
-    var SetFilter = function () {
-        $.get("home/sort?sortOption=" + $(this).find(".sort").val());
-    };
-
-    $(".btn-group").children().on("click", SetFilter);
-</script>
+<script src="~/js/note-list.js"></script>
 }

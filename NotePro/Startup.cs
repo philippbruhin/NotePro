@@ -59,7 +59,7 @@ namespace NotePro
                 .CreateScope())
             {
                 DbContextDefault dbcontext = serviceScope.ServiceProvider.GetService<DbContextDefault>();
-                serviceScope.ServiceProvider.GetService<DataGenerator>().createSampleData(dbcontext);
+                serviceScope.ServiceProvider.GetService<DataGenerator>().CreateSampleData(dbcontext);
             }
         }
     }

@@ -10,6 +10,7 @@ namespace NotePro.Models
 
         public long Id { get;  set; }
 
+        [Display(Name ="Creation Date")]
         public DateTime CreationDate { get; private set; }
 
         [Required(ErrorMessage = "Please enter a title for this note.")]
@@ -22,8 +23,11 @@ namespace NotePro.Models
 
         [Required(ErrorMessage = "Please enter a priority for this note.")]
         [Range(1,5)]
+
+        [Display(Name = "Importance")]
         public int Priority { get; set; }
 
+        [Display(Name = "Due Date")]
         [Required(ErrorMessage = "Please enter a due date for this note.")]
         [DataType(DataType.Date)]
         public DateTime DueDate { get; set; }

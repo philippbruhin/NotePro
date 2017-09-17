@@ -14,20 +14,22 @@ namespace NotePro.Controllers
         private readonly INoteData noteData;
         private readonly INoteSort noteSort;
 
-        private DisplayOption displayOption;
-        private SortOption sortOption;
-
         public HomeController(INoteData noteData, INoteSort noteSort)
         {
             this.noteData = noteData ?? throw new ArgumentNullException(nameof(noteData));
             this.noteSort = noteSort ?? throw new ArgumentNullException(nameof(noteSort));
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int SortOptionIndex, int DisplayOptionIndex)
         {
             var notes = await noteData.GetNotesAsync();
-            notes = noteSort.Sort(notes, sortOption);
-            return View("NotesList", notes);
+            var sortOption = (SortOption) SortOptionIndex;
+            var displayOption = (DisplayOption)DisplayOptionIndex;
+            return View("NotesList", new NotesListViewModel
+            {
+                Notes = noteSort.Sort(notes, sortOption),
+                SortOption = sortOption
+            });
         }
 
         public IActionResult NewNote()
@@ -80,11 +82,6 @@ namespace NotePro.Controllers
             return RedirectToAction("Index"); 
         }
 
-        public IActionResult Sort(SortOption _sortOption)
-        {
-            this.sortOption = _sortOption;
-            return RedirectToAction("Index");
-        }
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

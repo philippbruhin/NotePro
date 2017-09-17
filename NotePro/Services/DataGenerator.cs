@@ -11,7 +11,7 @@ namespace NotePro.Services
     public class DataGenerator
     {
         
-        public void createSampleData(DbContextDefault dbContext)
+        public void CreateSampleData(DbContextDefault dbContext)
         {
             INoteData noteData = new NoteData(dbContext);
 
@@ -59,7 +59,7 @@ namespace NotePro.Services
             {
                 Title = "Talk to Indian Design Company for Business Card Design.",
                 Description = "Option 3 seems suitable",
-                DueDate = DateTime.Parse("30.09.2017"),
+                DueDate = DateTime.Parse("30.12.2017"),
                 Priority = 3,
                 Finished = true
             };
@@ -75,6 +75,15 @@ namespace NotePro.Services
             };
             noteData.AddNoteAsync(note);
 
+            note = new Note
+            {
+                Title = "Organize Christmas Dinner",
+                Description = "Talk to parents first",
+                DueDate = DateTime.Now.AddDays(+70),
+                Priority = 1,
+                Finished = false
+            };
+            noteData.AddNoteAsync(note);
 
         }
     }
