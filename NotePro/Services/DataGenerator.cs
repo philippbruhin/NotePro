@@ -77,9 +77,139 @@ namespace NotePro.Services
 
             note = new Note
             {
-                Title = "Organize Christmas Dinner",
-                Description = "Talk to parents first",
+                Title = "Spaghetti",
+                Description = "Buy spaghetti at Migros.",
+                DueDate = DateTime.Now.AddDays(+3),
+                Priority = 1,
+                Finished = false
+            };
+            noteData.AddNoteAsync(note);
+
+            note = new Note
+            {
+                Title = "10 vor 10",
+                Description = "Watch on SRF1 regarding Korea Conflict.",
+                DueDate = DateTime.Now,
+                Priority = 1,
+                Finished = false
+            };
+            noteData.AddNoteAsync(note);
+
+            note = new Note
+            {
+                Title = "Blabla",
+                Description = "Blablabla",
+                DueDate = DateTime.Now.AddDays(+8),
+                Priority = 1,
+                Finished = false
+            };
+            noteData.AddNoteAsync(note);
+
+            note = new Note
+            {
+                Title = "Buy beer",
+                Description = "For weekend. Quöllfrisch only!",
+                DueDate = DateTime.Now.AddDays(+1),
+                Priority = 1,
+                Finished = false
+            };
+            noteData.AddNoteAsync(note);
+
+            note = new Note
+            {
+                Title = "Test 501 characters",
+                Description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et e.",
                 DueDate = DateTime.Now.AddDays(+70),
+                Priority = 1,
+                Finished = false
+            };
+            noteData.AddNoteAsync(note);
+
+            note = new Note
+            {
+                Title = "Test 999 characters",
+                Description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu.",
+                DueDate = DateTime.Now.AddDays(+100),
+                Priority = 1,
+                Finished = false
+            };
+            noteData.AddNoteAsync(note);
+
+            note = new Note
+            {
+                Title = "Note 1",
+                Description = "Text to note 1",
+                DueDate = DateTime.Now.AddDays(+70),
+                Priority = 1,
+                Finished = false
+            };
+            noteData.AddNoteAsync(note);
+
+            note = new Note
+            {
+                Title = "Note 2",
+                Description = "Text to note 2",
+                DueDate = DateTime.Now.AddDays(-10),
+                Priority = 1,
+                Finished = false
+            };
+            noteData.AddNoteAsync(note);
+
+            note = new Note
+            {
+                Title = "Note 3",
+                Description = "Text to note 3",
+                DueDate = DateTime.Now.AddDays(+70),
+                Priority = 1,
+                Finished = false
+            };
+            noteData.AddNoteAsync(note);
+
+            note = new Note
+            {
+                Title = "Note 4",
+                Description = "Text to note 4",
+                DueDate = DateTime.Now.AddDays(+70),
+                Priority = 1,
+                Finished = false
+            };
+            noteData.AddNoteAsync(note);
+
+            note = new Note
+            {
+                Title = "Note 5",
+                Description = "Text to note 5",
+                DueDate = DateTime.Now.AddDays(+600),
+                Priority = 1,
+                Finished = false
+            };
+            noteData.AddNoteAsync(note);
+
+            note = new Note
+            {
+                Title = "Note 6",
+                Description = "Text to note 6",
+                DueDate = DateTime.Now.AddDays(90),
+                Priority = 1,
+                Finished = false
+            };
+            noteData.AddNoteAsync(note);
+
+            note = new Note
+            {
+                Title = "Note 7",
+                Description = "Text to note 7",
+                DueDate = DateTime.Now.AddDays(+5),
+                Priority = 1,
+                Finished = false
+            };
+            noteData.AddNoteAsync(note);
+
+            note = new Note
+            {
+                Title = "Note 8",
+                Description = "Text to note 8",
+                DueDate = DateTime.Now.AddDays(+11),
                 Priority = 1,
                 Finished = false
             };
