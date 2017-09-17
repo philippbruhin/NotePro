@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NotePro.Models;
 using NotePro.Services;
+using NotePro.Utilities;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -12,26 +12,33 @@ namespace NotePro.Controllers
     {
 
         private readonly INoteData noteData;
+        private readonly INoteSort noteSort;
 
-        public HomeController(INoteData _noteData)
+        private DisplayOption displayOption;
+        private SortOption sortOption;
+
+        public HomeController(INoteData noteData, INoteSort noteSort)
         {
-            noteData = _noteData ?? throw new ArgumentNullException(nameof(_noteData));
+            this.noteData = noteData ?? throw new ArgumentNullException(nameof(noteData));
+            this.noteSort = noteSort ?? throw new ArgumentNullException(nameof(noteSort));
         }
 
         public async Task<IActionResult> Index()
         {
-            return View("NotesList", await noteData.GetNotesAsync());
+            var notes = await noteData.GetNotesAsync();
+            notes = noteSort.Sort(notes, sortOption);
+            return View("NotesList", notes);
         }
 
         public IActionResult NewNote()
         {
-            return View();
+            return View("Note");
         }
 
         [HttpGet]
         public async Task<IActionResult> EditNote(long id)
         {
-            return View("EditNote", await noteData.GetNoteAsync(id));
+            return View("Note", await noteData.GetNoteAsync(id));
         }
 
         [HttpPost]
@@ -44,7 +51,7 @@ namespace NotePro.Controllers
             }
             else
             {
-                return View("NewNote");
+                return View("Note");
             }
         }
 
@@ -58,7 +65,7 @@ namespace NotePro.Controllers
             }
             else
             {
-                return View("EditNote");
+                return View("Note");
             }
         }
 
@@ -73,6 +80,11 @@ namespace NotePro.Controllers
             return RedirectToAction("Index"); 
         }
 
+        public IActionResult Sort(SortOption _sortOption)
+        {
+            this.sortOption = _sortOption;
+            return RedirectToAction("Index");
+        }
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

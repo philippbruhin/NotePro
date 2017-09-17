@@ -1,23 +1,30 @@
 ﻿@model Note
 
-@{          // TODO USE PROPER HTTP METHOD
-    ViewData["Title"] = "Add a new note";
-    var aspAction = "UpdateNote";
-    //if (Model == null)
-    //{
-    //    aspAction = "AddNote";
-    //}
-    aspAction = "AddNote";
+@{       
+    ViewData["Title"] = "Manage Note";
+    var aspAction = Model == null ? "AddNote" : "UpdateNote";
+    var labelClassPriority1 = Model != null && Model.Priority == 1 ? "selected" : "";
+    var labelClassPriority2 = Model != null && Model.Priority == 2 ? "selected" : "";
+    var labelClassPriority3 = Model != null && Model.Priority == 3 ? "selected" : "";
+    var labelClassPriority4 = Model != null && Model.Priority == 4 ? "selected" : "";
+    var labelClassPriority5 = Model != null && Model.Priority == 5 ? "selected" : "";
 }
 
 
-<form class="note-form" asp-action="AddNote" asp-method="post">  
+<form class="note-form" asp-action="@aspAction" asp-method="post">  
+    
+    
 
     <div class="md-form">
         <i class="fa fa-tag prefix grey-text"></i>
         <input class="form-control" asp-for="Title"/>
         <label asp-for="Title" data-toggle="tooltip" data-placement="top" title="Every note needs a title.">Title:</label>
         <span asp-validation-for="Title" class="text-danger push-left"></span>
+       @{if (Model != null)
+            {
+                <input type="hidden" asp-for="Id" />
+            }
+        }
     </div>
         
     <div class="md-form">
@@ -44,19 +51,19 @@
             <div class="clearfix">
             <span class="priority-title float-left" data-toggle="tooltip" data-placement="top" title="Add an importance to your note from 1 to 5 stars.">Importance:</span>
                 <div class="rating float-left">
-                    <label>
+                    <label class="@labelClassPriority5">
                         <input asp-for="Priority" type="radio" name="Priority" value="5" title="5 stars"> 5
                     </label>
-                    <label>
+                    <label class="@labelClassPriority4">
                         <input asp-for="Priority" type="radio" name="Priority" value="4" title="4 stars"> 4
                     </label>
-                    <label>
+                    <label class="@labelClassPriority3">
                         <input asp-for="Priority" type="radio" name="Priority" value="3" title="3 stars"> 3
                     </label>
-                    <label>
+                    <label class="@labelClassPriority2">
                         <input asp-for="Priority" type="radio" name="Priority" value="2" title="2 stars"> 2
                     </label>
-                    <label>
+                    <label class="@labelClassPriority1">
                         <input asp-for="Priority" type="radio" name="Priority" value="1" title="1 star"> 1
                     </label>
                 
@@ -84,7 +91,7 @@
 @section Scripts {
     <script src="~/js/picker-date.js"></script>
     <script>
-        // Data Picker Initialization
+        // Date Picker Initialization
         $('.datepicker').pickadate({
             formatSubmit: 'dd/mm/yyyy'
         });

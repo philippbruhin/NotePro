@@ -1,30 +1,29 @@
 ﻿@model IEnumerable<Note>
 
+
 @{
     ViewData["Title"] = "NotesList";
 }
 
 <h2>Note List</h2>
-
-
-<!-- TODO Checkbox butons for sorting. Not working yet-->
+<!-- TODO Checkbox buttons for sorting. Not working yet-->
 <div class="btn-group" data-toggle="buttons">
 
     <label class="btn btn-default active">
-        <input type="radio" checked autocomplete="off">Newest (pre-checked)
+        <input class="sort" type="radio" name ="sort" id="sort0" value="0" autocomplete="off">Recent (default)
     </label>
 
     <label class="btn btn-default">
-        <input type="radio" autocomplete="off">Oldest
+        <input class="sort" type="radio" name ="sort" id="sort1" value="1" autocomplete="off">Oldest
     </label>
 
 
     <label class="btn btn-default">
-        <input type="radio" autocomplete="off">Duedate
+        <input class="sort" type="radio" name ="sort" id="sort2" value="2" autocomplete="off">Due Date
     </label>
 
     <label class="btn btn-default">
-        <input type="radio" autocomplete="off">Importance
+        <input class="sort" type="radio" name ="sort" id="sort3" value="3" autocomplete="off">Importance
     </label>
 
 </div>
@@ -71,11 +70,20 @@
             </td>
             <td>
                 <a asp-action="EditNote" asp-route-id="@item.Id">Edit</a> |
-                <!--<a asp-action="Details" asp-route-uid=">Details</a> |-->
                 <!--todo handle Delete with proper HTTP Method-->
-                <a asp-action="DeleteNote" asp-route-id="@item.Id" asp-method="DELETE">Delete</a> 
+                <a asp-action="DeleteNote" asp-route-id="@item.Id" asp-method="delete">Delete</a> 
             </td>
             </tr>
         }
     </tbody>
 </table>
+
+@section Scripts {
+<script>
+    var SetFilter = function () {
+        $.get("home/sort?sortOption=" + $(this).find(".sort").val());
+    };
+
+    $(".btn-group").children().on("click", SetFilter);
+</script>
+}

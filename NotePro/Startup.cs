@@ -24,6 +24,8 @@ namespace NotePro
                 options => options.UseInMemoryDatabase(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<INoteData, NoteData>();
+            services.AddTransient<INoteSort, NoteSort>();
+            services.AddTransient<DataGenerator, DataGenerator>();
             services.AddMvc();
         }
 
@@ -34,6 +36,7 @@ namespace NotePro
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
+                ConfigureDevelopment(app);
             }
             else
             {
@@ -48,6 +51,16 @@ namespace NotePro
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        private void ConfigureDevelopment(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
+                .CreateScope())
+            {
+                DbContextDefault dbcontext = serviceScope.ServiceProvider.GetService<DbContextDefault>();
+                serviceScope.ServiceProvider.GetService<DataGenerator>().createSampleData(dbcontext);
+            }
         }
     }
 }
