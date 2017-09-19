@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace NotePro.Utilities
 {
     public enum SortOption
-    {
+    {   
         Recent,
         Oldest,
         DueDate,

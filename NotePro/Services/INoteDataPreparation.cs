@@ -5,9 +5,11 @@ using System.Collections.Generic;
 
 namespace NotePro.Services
 {
-    public interface INoteSort
+    public interface INoteDataPreparation
     {
         IEnumerable<Note> Sort(IEnumerable<Note> notes, SortOption sortOption);
+
+        IEnumerable<Note> Filter(IEnumerable<Note> notes, FilterOption filterOption);
 
     }
 }

@@ -13,7 +13,7 @@
 
 <form class="note-form" asp-action="@aspAction" asp-method="post">  
     
-    
+ 
 
     <div class="md-form">
         <i class="fa fa-tag prefix grey-text"></i>
@@ -76,7 +76,7 @@
         <div class="col-12 col-md-4 clearfix">
         
             <div class="form-group finished">
-                <input type="checkbox" class="filled-in" id="checkbox2">
+                <input type="checkbox" asp-for="Finished" class="filled-in" id="checkbox2">
                 <label for="checkbox2" data-toggle="tooltip" data-placement="top" title="Check as soon as task is finished.">@Html.DisplayNameFor(model => model.Finished)</label>
             </div>
         

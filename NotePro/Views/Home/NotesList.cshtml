@@ -8,27 +8,48 @@
     var sort1Active = Model.SortOption == SortOption.Oldest ? "active" : "";
     var sort2Active = Model.SortOption == SortOption.DueDate ? "active" : "";
     var sort3Active = Model.SortOption == SortOption.Importance ? "active" : "";
+
+    var filter0Active = Model.FilterOption == FilterOption.ExcludeFinished ? "active" : "";
+    var filter1Active = Model.FilterOption == FilterOption.NoFilter ? "active" : "";
 }
 
 <h2>Note List</h2>
 
 <div class="btn-group" data-toggle="buttons">
 
-    <label class="btn btn-default @sort0Active">
-        <input class="sort" type="radio" name="sort" id="sort0" value="0" autocomplete="off">Recent
-    </label>
+    <form id="sortform" asp-action="Index" method="get" >
+        <input type="hidden" name="FilterOptionIndex" id="@Model.FilterOption" />
+        <label class="btn btn-default @sort0Active">
+            <input class="sort" type="radio" name="SortOptionIndex" id="sort0" value="0" autocomplete="off">Recent
+        </label>
 
-    <label class="btn btn-default @sort1Active">
-        <input class="sort" type="radio" name="sort" id="sort1" value="1" autocomplete="off">Oldest
-    </label>
+        <label class="btn btn-default @sort1Active">
+            <input class="sort" type="radio" name="SortOptionIndex" id="sort1" value="1" autocomplete="off">Oldest
+        </label>
 
-    <label class="btn btn-default @sort2Active">
-        <input class="sort" type="radio" name="sort" id="sort2" value="2" autocomplete="off">Due Date
-    </label>
+        <label class="btn btn-default @sort2Active">
+            <input class="sort" type="radio" name="SortOptionIndex" id="sort2" value="2" autocomplete="off">Due Date
+        </label>
 
-    <label class="btn btn-default @sort3Active">
-        <input class="sort" type="radio" name="sort" id="sort3" value="3" autocomplete="off">Importance
-    </label>
+        <label class="btn btn-default @sort3Active">
+            <input class="sort" type="radio" name="SortOptionIndex" id="sort3" value="3" autocomplete="off">Importance
+        </label>
+    </form>
+</div>
+
+<div class="btn-group" data-toggle="buttons">
+
+    <form id="filterform" asp-action="Index" method="get">
+        <input type="hidden" name="SortOptionIndex" id="@Model.SortOption" />
+        <label class="btn btn-default @filter0Active">
+            <input class="filter" type="radio" name="FilterOptionIndex" id="filter0" value="0" autocomplete="off">Hide Finished
+        </label>
+
+        <label class="btn btn-default @filter1Active">
+            <input class="filter" type="radio" name="FilterOptionIndex" id="filter1" value="1" autocomplete="off">Show Finished
+        </label>
+
+    </form>
 </div>
 
 <table class="table">
@@ -71,9 +92,11 @@
                 @Html.DisplayFor(modelItem => item.DueDate)
             </td>
             <td>
-                <a asp-action="EditNote" asp-route-id="@item.Id">Edit</a> |
-                <!--todo handle Delete with proper HTTP Method-->
-                <a asp-action="DeleteNote" asp-route-id="@item.Id" asp-method="delete">Delete</a> 
+                <input type="checkbox" class="filled-in" value="@item.Id">     
+            </td>
+            <td>
+                <a class="btn btn-default btn-sm " asp-action="EditNote" asp-route-id="@item.Id">Edit</a> 
+                <a class="btn btn-default btn-sm" asp-action="DeleteNote" asp-route-id="@item.Id" asp-method="delete">Delete</a>
             </td>
         </tr>
     }
@@ -84,28 +107,6 @@
     <script src="~/js/note-list.js"></script>
 }
 
-<nav id="pagination-nav" class="d-flex justify-content-center"">
-    <ul class="pagination pg-blue">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-            </a>
-        </li>
-        <li class="page-item active">
-            <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">5</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+
             
 

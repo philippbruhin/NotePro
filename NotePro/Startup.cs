@@ -24,7 +24,7 @@ namespace NotePro
                 options => options.UseInMemoryDatabase(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<INoteData, NoteData>();
-            services.AddTransient<INoteSort, NoteSort>();
+            services.AddTransient<INoteDataPreparation, NoteDataPreparation>();
             services.AddTransient<DataGenerator, DataGenerator>();
             services.AddMvc();
         }

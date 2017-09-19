@@ -7,6 +7,8 @@ namespace NotePro.Models
     {
         public SortOption SortOption { get; set; }
 
+        public FilterOption FilterOption { get; set; }
+
         public IEnumerable<Note> Notes { get; set; }
 
 

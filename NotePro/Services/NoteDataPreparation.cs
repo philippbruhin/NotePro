@@ -7,8 +7,23 @@ using NotePro.Models;
 
 namespace NotePro.Services
 {
-    public class NoteSort : INoteSort
+    public class NoteDataPreparation : INoteDataPreparation
     {
+        public IEnumerable<Note> Filter(IEnumerable<Note> notes, FilterOption filterOption)
+        {
+            IEnumerable<Note> sortedNotes;
+            switch (filterOption)
+            {
+                case FilterOption.NoFilter:
+                    sortedNotes = notes;
+                    break;
+                default:
+                    sortedNotes = notes.Where(x => x.Finished == false);
+                    break;
+            }
+            return sortedNotes;
+        }
+
         public IEnumerable<Note> Sort(IEnumerable<Note> notes, SortOption sortOption = SortOption.Recent) 
         {
             IEnumerable<Note> sortedNotes;

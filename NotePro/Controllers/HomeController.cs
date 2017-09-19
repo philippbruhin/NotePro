@@ -12,23 +12,27 @@ namespace NotePro.Controllers
     {
 
         private readonly INoteData noteData;
-        private readonly INoteSort noteSort;
+        private readonly INoteDataPreparation NoteDataPreparation;
 
-        public HomeController(INoteData noteData, INoteSort noteSort)
+        public HomeController(INoteData noteData, INoteDataPreparation NoteDataPreparation)
         {
             this.noteData = noteData ?? throw new ArgumentNullException(nameof(noteData));
-            this.noteSort = noteSort ?? throw new ArgumentNullException(nameof(noteSort));
+            this.NoteDataPreparation = NoteDataPreparation ?? throw new ArgumentNullException(nameof(NoteDataPreparation));
         }
 
-        public async Task<IActionResult> Index(int SortOptionIndex, int DisplayOptionIndex)
+        public async Task<IActionResult> Index(int SortOptionIndex, int FilterOptionIndex)
         {
             var notes = await noteData.GetNotesAsync();
             var sortOption = (SortOption) SortOptionIndex;
-            var displayOption = (DisplayOption)DisplayOptionIndex;
+            var filterOption = (FilterOption)FilterOptionIndex;
+            notes = NoteDataPreparation.Sort(notes, sortOption);
+            notes = NoteDataPreparation.Filter(notes, filterOption);
+
             return View("NotesList", new NotesListViewModel
             {
-                Notes = noteSort.Sort(notes, sortOption),
-                SortOption = sortOption
+                Notes = notes,
+                SortOption = sortOption,
+                FilterOption = filterOption
             });
         }
 
@@ -71,7 +75,7 @@ namespace NotePro.Controllers
             }
         }
 
-        [HttpGet] //todo only hack, potential security hole
+        [HttpGet] 
         public async Task<ActionResult> DeleteNote(long id)
         {
             if (id == 0)
