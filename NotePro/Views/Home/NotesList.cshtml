@@ -80,7 +80,11 @@
     </tbody>
 </table>
 
-<nav id="pagination-nav" class="mt-4 mb-4 d-flex justify-content-center"">
+@section Scripts {
+    <script src="~/js/note-list.js"></script>
+}
+
+<nav id="pagination-nav" class="d-flex justify-content-center"">
     <ul class="pagination pg-blue">
         <li class="page-item disabled">
             <a class="page-link" href="#" aria-label="Previous">
@@ -105,6 +109,3 @@
 </nav>
             
 
-@section Scripts {
-<script src="~/js/note-list.js"></script>
-}
