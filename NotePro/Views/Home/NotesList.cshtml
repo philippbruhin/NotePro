@@ -52,61 +52,33 @@
     </form>
 </div>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes.FirstOrDefault<Note>().Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes.FirstOrDefault<Note>().Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes.FirstOrDefault<Note>().Priority)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes.FirstOrDefault<Note>().CreationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes.FirstOrDefault<Note>().DueDate)
-        </th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model.Notes) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Priority)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DueDate)
-            </td>
-            <td>
-                <input type="checkbox" class="filled-in" value="@item.Id">     
-            </td>
-            <td>
-                <a class="btn btn-default btn-sm " asp-action="EditNote" asp-route-id="@item.Id">Edit</a> 
-                <a class="btn btn-default btn-sm" asp-action="DeleteNote" asp-route-id="@item.Id" asp-method="delete">Delete</a>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+
+<div class="row">
+
+    @foreach (var item in Model.Notes)
+    {
+        <div class="col-12 col-sm-6 col-md-4">
+            <!--Panel-->
+            <div class="card mt-4 mb-4">
+                <h3 class="card-header primary-color white-text">@Html.DisplayFor(modelItem => item.Title) @Html.DisplayFor(modelItem => item.Priority)</h3>
+                <div class="card-body">
+                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.CreationDate) @Html.DisplayFor(modelItem => item.DueDate)</h4>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                    <a class="btn btn-default" asp-action="EditNote" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-default" asp-action="DeleteNote" asp-route-id="@item.Id" asp-method="delete">Delete</a>
+                </div>
+            </div>
+            <!--/.Panel-->
+        </div>
+      }
+
+        </div>
+
 
 @section Scripts {
     <script src="~/js/note-list.js"></script>
 }
 
 
-            
+
 
