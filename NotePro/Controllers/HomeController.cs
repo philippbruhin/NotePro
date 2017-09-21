@@ -43,8 +43,15 @@ namespace NotePro.Controllers
 
         [HttpGet]
         public async Task<IActionResult> EditNote(long id)
-        {
-            return View("Note", await noteData.GetNoteAsync(id));
+        {       
+            var note = await noteData.GetNoteAsync(id);
+
+            if (note == null)
+            {
+                return BadRequest();
+            }
+
+            return View("Note", note);
         }
 
         [HttpPost]
@@ -83,6 +90,7 @@ namespace NotePro.Controllers
                 return BadRequest();
             }
             await noteData.RemoveNoteAsync(id);
+
             return RedirectToAction("Index"); 
         }
 
