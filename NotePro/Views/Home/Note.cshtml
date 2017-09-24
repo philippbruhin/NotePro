@@ -3,18 +3,11 @@
 @{       
     ViewData["Title"] = "Manage Note";
     var aspAction = Model == null ? "AddNote" : "UpdateNote";
-    var labelClassPriority1 = Model != null && Model.Priority == 1 ? "selected" : "";
-    var labelClassPriority2 = Model != null && Model.Priority == 2 ? "selected" : "";
-    var labelClassPriority3 = Model != null && Model.Priority == 3 ? "selected" : "";
-    var labelClassPriority4 = Model != null && Model.Priority == 4 ? "selected" : "";
-    var labelClassPriority5 = Model != null && Model.Priority == 5 ? "selected" : "";
 }
 
 
 <form class="note-form" asp-action="@aspAction" asp-method="post">  
     
- 
-
     <div class="md-form">
         <i class="fa fa-tag prefix grey-text"></i>
         <input class="form-control" asp-for="Title"/>
@@ -51,22 +44,15 @@
             <div class="clearfix">
             <span class="priority-title float-left" data-toggle="tooltip" data-placement="top" title="Add an importance to your note from 1 to 5 stars.">@Html.DisplayNameFor(Model => Model.Priority):</span>
                 <div class="rating float-left">
-                    <label class="@labelClassPriority5">
-                        <input asp-for="Priority" type="radio" name="Priority" value="5" title="5 stars"> 5
-                    </label>
-                    <label class="@labelClassPriority4">
-                        <input asp-for="Priority" type="radio" name="Priority" value="4" title="4 stars"> 4
-                    </label>
-                    <label class="@labelClassPriority3">
-                        <input asp-for="Priority" type="radio" name="Priority" value="3" title="3 stars"> 3
-                    </label>
-                    <label class="@labelClassPriority2">
-                        <input asp-for="Priority" type="radio" name="Priority" value="2" title="2 stars"> 2
-                    </label>
-                    <label class="@labelClassPriority1">
-                        <input asp-for="Priority" type="radio" name="Priority" value="1" title="1 star"> 1
-                    </label>
-                
+
+                    @for (int i = 5; i > 0; i--)
+                    {
+                        var labelClassPriority = Model != null && Model.Priority == i ? "selected" : "";
+
+                        <label class="@labelClassPriority">
+                            <input asp-for="Priority" type="radio" name="Priority" value="@i" title="@i stars"> @i
+                        </label>
+                    }
                 </div>
             </div>
             <span asp-validation-for="Priority" class="text-danger"></span>
@@ -88,6 +74,7 @@
         <button class="btn btn-default" type="submit">Save<i class="fa fa-paper-plane-o ml-1"></i></button>
     </div>
 </form>
+
 @section Scripts {
     <script src="~/js/picker-date.js"></script>
     <script>

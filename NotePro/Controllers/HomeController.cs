@@ -25,8 +25,9 @@ namespace NotePro.Controllers
             var notes = await noteData.GetNotesAsync();
             var sortOption = (SortOption) SortOptionIndex;
             var filterOption = (FilterOption)FilterOptionIndex;
-            notes = NoteDataPreparation.Sort(notes, sortOption);
+
             notes = NoteDataPreparation.Filter(notes, filterOption);
+            notes = NoteDataPreparation.Sort(notes, sortOption);
 
             return View("NotesList", new NotesListViewModel
             {

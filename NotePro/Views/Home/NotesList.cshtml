@@ -1,57 +1,61 @@
 ﻿@using NotePro.Utilities;
+@using NotePro.Services;
 
 @model NotesListViewModel;
 
 @{
     ViewData["Title"] = "NotesList";
-    var sort0Active = Model.SortOption == SortOption.Recent ? "active" : "";
-    var sort1Active = Model.SortOption == SortOption.Oldest ? "active" : "";
-    var sort2Active = Model.SortOption == SortOption.DueDate ? "active" : "";
-    var sort3Active = Model.SortOption == SortOption.Importance ? "active" : "";
 
-    var filter0Active = Model.FilterOption == FilterOption.ExcludeFinished ? "active" : "";
-    var filter1Active = Model.FilterOption == FilterOption.NoFilter ? "active" : "";
-
-    int filterOption = (int) Model.FilterOption;
-    int sortOption = (int)Model.SortOption;
+    int currentFilterOption = (int) Model.FilterOption;
+    int currentSortOption = (int)Model.SortOption;
 }
 
 <h2>Note List</h2>
+    <div class="btn-group">
 
-<div class="btn-group">
-    <a asp-action="Index" class="btn btn-default @sort0Active" asp-route-sortoptionindex="0" asp-route-filteroptionindex="@filterOption">Recent</a>
-    <a asp-action="Index" class="btn btn-default @sort1Active" asp-route-sortoptionindex="1" asp-route-filteroptionindex="@filterOption">Oldest</a>
-    <a asp-action="Index" class="btn btn-default @sort2Active" asp-route-sortoptionindex="2" asp-route-filteroptionindex="@filterOption">Due Date</a>
-    <a asp-action="Index" class="btn btn-default @sort3Active" asp-route-sortoptionindex="3" asp-route-filteroptionindex="@filterOption">Importance</a>
-</div>
+        @for (int i = 0; i < Enum.GetValues(typeof(SortOption)).Length; i++)
+        {
+            var sortOption = (SortOption)i;
+            var displayName = HtmlExtension<SortOption>.GetDisplayName(sortOption);
+            var sortActive = Model.SortOption == sortOption ? "active" : "";
 
-<div class="btn-group">
-    <a asp-action="Index" class="btn btn-default @filter0Active" asp-route-sortoptionindex="@sortOption" asp-route-filteroptionindex="0">Hide Finished</a>
-    <a asp-action="Index" class="btn btn-default @filter1Active" asp-route-sortoptionindex="@sortOption" asp-route-filteroptionindex="1">Show Finished</a>
-</div>
+            <a asp-action="Index" class="btn btn-default @sortActive" asp-route-sortoptionindex="@i" asp-route-filteroptionindex="@currentFilterOption">@displayName</a>
+        }
+    </div>
 
-<div class="row">
-    @foreach (var item in Model.Notes)
-    {
-        <div class="col-12 col-sm-6 col-md-4">
-            <!--Panel-->
-            <div class="card mt-4 mb-4">
-                <h3 class="card-header primary-color white-text">@Html.DisplayFor(modelItem => item.Title) @Html.DisplayFor(modelItem => item.Priority)</h3>
-                <div class="card-body">
-                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.CreationDate) @Html.DisplayFor(modelItem => item.DueDate)</h4>
-                    <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
-                    <a class="btn btn-default" asp-action="EditNote" asp-route-id="@item.Id">Edit</a>
-                    <a class="btn btn-default delete-note" asp-action="DeleteNote" asp-route-id="@item.Id" asp-method="delete">Delete</a>
+    <div class="btn-group">
+        @for (int i = 0; i < Enum.GetValues(typeof(FilterOption)).Length; i++)
+        {
+            var filterOption = (FilterOption)i;
+            var displayName = HtmlExtension<FilterOption>.GetDisplayName(filterOption);
+            var filterActive = Model.FilterOption == filterOption ? "active" : "";
+
+            <a asp-action="Index" class="btn btn-default @filterActive" asp-route-sortoptionindex="@currentSortOption" asp-route-filteroptionindex="@i">@displayName</a>
+        }
+    </div>
+
+    <div class="row">
+        @foreach (var item in Model.Notes)
+        {
+            <div class="col-12 col-sm-6 col-md-4">
+                <!--Panel-->
+                <div class="card mt-4 mb-4">
+                    <h3 class="card-header primary-color white-text">@Html.DisplayFor(modelItem => item.Title) @Html.DisplayFor(modelItem => item.Priority)</h3>
+                    <div class="card-body">
+                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.CreationDate) @Html.DisplayFor(modelItem => item.DueDate)</h4>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                        <a class="btn btn-default" asp-action="EditNote" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-default delete-note" asp-action="DeleteNote" asp-route-id="@item.Id" asp-method="delete">Delete</a>
+                    </div>
                 </div>
+                <!--/.Panel-->
             </div>
-            <!--/.Panel-->
-        </div>
-    }
-</div>
+        }
+    </div>
 
-@section Scripts {
-    <script src="~/js/note-list.js"></script>
-}
+    @section Scripts {
+        <script src="~/js/note-list.js"></script>
+    }
 
 
 
