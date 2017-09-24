@@ -11,47 +11,24 @@
 
     var filter0Active = Model.FilterOption == FilterOption.ExcludeFinished ? "active" : "";
     var filter1Active = Model.FilterOption == FilterOption.NoFilter ? "active" : "";
+
+    int filterOption = (int) Model.FilterOption;
+    int sortOption = (int)Model.SortOption;
 }
 
 <h2>Note List</h2>
 
-<div class="btn-group" data-toggle="buttons">
-
-    <form id="sortform" asp-action="Index" method="get" >
-        <input type="hidden" name="FilterOptionIndex" id="@Model.FilterOption" />
-        <label class="btn btn-default @sort0Active">
-            <input class="sort" type="radio" name="SortOptionIndex" id="sort0" value="0" autocomplete="off">Recent
-        </label>
-
-        <label class="btn btn-default @sort1Active">
-            <input class="sort" type="radio" name="SortOptionIndex" id="sort1" value="1" autocomplete="off">Oldest
-        </label>
-
-        <label class="btn btn-default @sort2Active">
-            <input class="sort" type="radio" name="SortOptionIndex" id="sort2" value="2" autocomplete="off">Due Date
-        </label>
-
-        <label class="btn btn-default @sort3Active">
-            <input class="sort" type="radio" name="SortOptionIndex" id="sort3" value="3" autocomplete="off">Importance
-        </label>
-    </form>
+<div class="btn-group">
+    <a asp-action="Index" class="btn btn-default @sort0Active" asp-route-sortoptionindex="0" asp-route-filteroptionindex="@filterOption">Recent</a>
+    <a asp-action="Index" class="btn btn-default @sort1Active" asp-route-sortoptionindex="1" asp-route-filteroptionindex="@filterOption">Oldest</a>
+    <a asp-action="Index" class="btn btn-default @sort2Active" asp-route-sortoptionindex="2" asp-route-filteroptionindex="@filterOption">Due Date</a>
+    <a asp-action="Index" class="btn btn-default @sort3Active" asp-route-sortoptionindex="3" asp-route-filteroptionindex="@filterOption">Importance</a>
 </div>
 
-<div class="btn-group" data-toggle="buttons">
-
-    <form id="filterform" asp-action="Index" method="get">
-        <input type="hidden" name="SortOptionIndex" id="@Model.SortOption" />
-        <label class="btn btn-default @filter0Active">
-            <input class="filter" type="radio" name="FilterOptionIndex" id="filter0" value="0" autocomplete="off">Hide Finished
-        </label>
-
-        <label class="btn btn-default @filter1Active">
-            <input class="filter" type="radio" name="FilterOptionIndex" id="filter1" value="1" autocomplete="off">Show Finished
-        </label>
-
-    </form>
+<div class="btn-group">
+    <a asp-action="Index" class="btn btn-default @filter0Active" asp-route-sortoptionindex="@sortOption" asp-route-filteroptionindex="0">Hide Finished</a>
+    <a asp-action="Index" class="btn btn-default @filter1Active" asp-route-sortoptionindex="@sortOption" asp-route-filteroptionindex="1">Show Finished</a>
 </div>
-
 
 <div class="row">
 
@@ -70,9 +47,9 @@
             </div>
             <!--/.Panel-->
         </div>
-      }
+    }
 
-        </div>
+</div>
 
 
 @section Scripts {
