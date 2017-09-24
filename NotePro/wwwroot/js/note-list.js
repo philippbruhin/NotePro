@@ -1,16 +1,5 @@
 ﻿
-//handle filter options in note list -- now done with group
-//var setFilter = function () {
-//    document.forms["sortform"].submit();
-//};
-
-//$(".sort").on("change", setFilter);
-
-//var disableAnchor = function () {
-//    alert("disable");
-//    $(this).preventDefault();
-//};
-
-//$("a").click(disableAnchor);
-
-
+//disable anchor delete after one click to prevent fatal error on double click
+$("a.delete-note").one("click", function () {
+    $(this).click(function () { return false; });
+});
