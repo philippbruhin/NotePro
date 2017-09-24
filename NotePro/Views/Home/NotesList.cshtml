@@ -6,57 +6,85 @@
 @{
     ViewData["Title"] = "NotesList";
 
-    int currentFilterOption = (int) Model.FilterOption;
+    int currentFilterOption = (int)Model.FilterOption;
     int currentSortOption = (int)Model.SortOption;
 }
 
 <h2>Note List</h2>
-    <div class="btn-group">
 
-        @for (int i = 0; i < Enum.GetValues(typeof(SortOption)).Length; i++)
+<div class="btn-group">
+
+    @for (int i = 0; i < Enum.GetValues(typeof(SortOption)).Length; i++)
+    {
+        var sortOption = (SortOption)i;
+        var displayName = HtmlExtension<SortOption>.GetDisplayName(sortOption);
+        var sortActive = Model.SortOption == sortOption ? "active" : "";
+
+        <a asp-action="Index" class="btn btn-default @sortActive" asp-route-sortoptionindex="@i" asp-route-filteroptionindex="@currentFilterOption">@displayName</a>
+    }
+</div>
+
+<div class="btn-group">
+    @for (int i = 0; i < Enum.GetValues(typeof(FilterOption)).Length; i++)
+    {
+        var filterOption = (FilterOption)i;
+        var displayName = HtmlExtension<FilterOption>.GetDisplayName(filterOption);
+        var filterActive = Model.FilterOption == filterOption ? "active" : "";
+
+        <a asp-action="Index" class="btn btn-default @filterActive" asp-route-sortoptionindex="@currentSortOption" asp-route-filteroptionindex="@i">@displayName</a>
+    }
+</div>
+
+<div class="row">
+    @{
+        var labelCreationDate = Html.DisplayNameFor(model => model.Notes.FirstOrDefault<Note>().CreationDate) + ":";
+        var labelDueDate = Html.DisplayNameFor(model => model.Notes.FirstOrDefault<Note>().DueDate) + ":";
+        var now = DateTime.Now;
+
+        foreach (var item in Model.Notes)
         {
-            var sortOption = (SortOption)i;
-            var displayName = HtmlExtension<SortOption>.GetDisplayName(sortOption);
-            var sortActive = Model.SortOption == sortOption ? "active" : "";
 
-            <a asp-action="Index" class="btn btn-default @sortActive" asp-route-sortoptionindex="@i" asp-route-filteroptionindex="@currentFilterOption">@displayName</a>
-        }
-    </div>
+            var isOverdue = now > item.DueDate;
+            var isOverdueSoon = now.AddDays(3) > item.DueDate;
+            var styleOverdue = isOverdue ? "text-danger" : isOverdueSoon ? "text-warning" : "";
 
-    <div class="btn-group">
-        @for (int i = 0; i < Enum.GetValues(typeof(FilterOption)).Length; i++)
-        {
-            var filterOption = (FilterOption)i;
-            var displayName = HtmlExtension<FilterOption>.GetDisplayName(filterOption);
-            var filterActive = Model.FilterOption == filterOption ? "active" : "";
-
-            <a asp-action="Index" class="btn btn-default @filterActive" asp-route-sortoptionindex="@currentSortOption" asp-route-filteroptionindex="@i">@displayName</a>
-        }
-    </div>
-
-    <div class="row">
-        @foreach (var item in Model.Notes)
-        {
             <div class="col-12 col-sm-6 col-md-4">
                 <!--Panel-->
                 <div class="card mt-4 mb-4">
                     <h3 class="card-header primary-color white-text">@Html.DisplayFor(modelItem => item.Title) @Html.DisplayFor(modelItem => item.Priority)</h3>
                     <div class="card-body">
-                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.CreationDate) @Html.DisplayFor(modelItem => item.DueDate)</h4>
+                        <h4 class="card-title"></h4>
                         <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                    
+                        <p class="card-text">@labelCreationDate @Html.DisplayFor(modelItem => item.CreationDate)</p>
+                        
+                        <p class="card-text @styleOverdue">@labelDueDate      @Html.DisplayFor(modelItem => item.DueDate)
+                           
+                           @if (isOverdue)
+                           {
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                           }
+                           else if (isOverdueSoon)
+                           {
+                                <i class="fa fa-hourglass-end" aria-hidden="true"></i>
+                           }
+                           else
+                           {
+                                <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                           }
+                        </p>
+
+
+                        <a class="btn btn-default delete-note" asp-action="DeleteNote" asp-route-id="@item.Id" asp-route-filteroptionindex="@currentFilterOption" asp-route-sortoptionindex="@currentSortOption" asp-method="delete">Delete</a>
                         <a class="btn btn-default" asp-action="EditNote" asp-route-id="@item.Id">Edit</a>
-                        <a class="btn btn-default delete-note" asp-action="DeleteNote" asp-route-id="@item.Id" asp-method="delete">Delete</a>
                     </div>
                 </div>
                 <!--/.Panel-->
             </div>
         }
-    </div>
+    }   
+</div>
 
-    @section Scripts {
-        <script src="~/js/note-list.js"></script>
-    }
-
-
-
-
+@section Scripts {
+    <script src="~/js/note-list.js"></script>
+}

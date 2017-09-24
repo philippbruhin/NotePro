@@ -29,7 +29,7 @@ namespace NotePro.Services
             {
                 Title = "Buy a new shampoo for Gianna",
                 Description = "Panthene Pro V",
-                DueDate = DateTime.Now.AddDays(7),
+                DueDate = DateTime.Now.AddDays(2),
                 Priority = 2,
                 Finished = false
             };
@@ -79,7 +79,7 @@ namespace NotePro.Services
             {
                 Title = "Spaghetti",
                 Description = "Buy spaghetti at Migros.",
-                DueDate = DateTime.Now.AddDays(+3),
+                DueDate = DateTime.Now.AddDays(2),
                 Priority = 1,
                 Finished = false
             };

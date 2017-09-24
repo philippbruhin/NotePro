@@ -84,7 +84,7 @@ namespace NotePro.Controllers
         }
 
         [HttpGet] 
-        public async Task<ActionResult> DeleteNote(long id)
+        public async Task<ActionResult> DeleteNote(long id, int SortOptionIndex, int FilterOptionIndex)
         {
             if (id == 0)
             {
@@ -92,7 +92,7 @@ namespace NotePro.Controllers
             }
             await noteData.RemoveNoteAsync(id);
 
-            return RedirectToAction("Index"); 
+            return RedirectToAction("Index", new { SortOptionIndex = SortOptionIndex, FilterOptionIndex = FilterOptionIndex }); 
         }
 
         public IActionResult Error()
