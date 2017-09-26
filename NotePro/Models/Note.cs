@@ -13,11 +13,11 @@ namespace NotePro.Models
 
         [Required(ErrorMessage = "Please enter a title for this note.")]
         [StringLength(60, MinimumLength = 3)]
-        [RegularExpression(@"^[a-zA-Z0-9'-_\s]*$")]
+        [RegularExpression(@"^[a-zA-Z0-9äöüÄÖÜß!?'-_\s]*$")]
         public string Title { get; set; }
 
         [Required(ErrorMessage = "Please enter a description for this note.")]
-        [RegularExpression(@"^[a-zA-Z0-9'-_\s]*$"), StringLength(1000)]
+        [RegularExpression(@"^[a-zA-Z0-9äöüÄÖÜß!?'-_\s]*$"), StringLength(1000)]
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Please enter a priority for this note.")]
