@@ -9,5 +9,5 @@ $('.rating input').change(function () {
 
 // Tooltips Initialization
 $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip();
 })

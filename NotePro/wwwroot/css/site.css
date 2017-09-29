@@ -9,6 +9,11 @@
     margin-bottom: 4em;
 }
 
+/* Submit Note */
+textarea.md-textarea {
+    height: 12rem;
+}
+
 .submit-note {
     margin-top: 3em;
 }
