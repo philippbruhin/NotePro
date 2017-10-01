@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using NotePro.Models;
 using NotePro.Services;
 using NotePro.Utilities;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using NotePro.DataStorage;
 
 namespace NotePro.Controllers
 {
@@ -13,15 +15,18 @@ namespace NotePro.Controllers
 
         private readonly INoteData noteData;
         private readonly INoteDataPreparation NoteDataPreparation;
+        private readonly ApplicationSession _session;
 
-        public HomeController(INoteData noteData, INoteDataPreparation NoteDataPreparation)
+        public HomeController(INoteData noteData, INoteDataPreparation NoteDataPreparation, IHttpContextAccessor httpContextAccessor)
         {
             this.noteData = noteData ?? throw new ArgumentNullException(nameof(noteData));
             this.NoteDataPreparation = NoteDataPreparation ?? throw new ArgumentNullException(nameof(NoteDataPreparation));
+            this._session = new ApplicationSession(httpContextAccessor.HttpContext.Session);
         }
 
         public async Task<IActionResult> Index(int SortOptionIndex, int FilterOptionIndex)
         {
+
             var notes = await noteData.GetNotesAsync();
             var sortOption = (SortOption) SortOptionIndex;
             var filterOption = (FilterOption)FilterOptionIndex;
@@ -93,6 +98,12 @@ namespace NotePro.Controllers
             await noteData.RemoveNoteAsync(id);
 
             return RedirectToAction("Index", new { SortOptionIndex = SortOptionIndex, FilterOptionIndex = FilterOptionIndex }); 
+        }
+
+        public IActionResult ToggleLayout(int SortOptionIndex, int FilterOptionIndex)
+        {
+            _session.DefaultLayout = !_session.DefaultLayout;
+            return RedirectToAction("Index", new { SortOptionIndex = SortOptionIndex, FilterOptionIndex = FilterOptionIndex });
         }
 
         public IActionResult Error()

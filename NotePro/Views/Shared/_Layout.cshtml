@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using NotePro.DataStorage
+@{
+    var session = new ApplicationSession(Context.Session);
+} 
+<!DOCTYPE html>
 <!--[if IE]><html class="ie"><![endif]-->
 <!--[if !IE]>--><html><!--<![endif]-->
 <head>
@@ -12,6 +16,10 @@
         <link rel="stylesheet" href="~/css/mdb.css" />
         <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        @if (!session.DefaultLayout)
+        {
+            <link rel="stylesheet" href="~/css/dark_theme.css" />
+        }
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
@@ -22,14 +30,17 @@
         <link rel="stylesheet" href="~/css/mdb.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        @if (!session.DefaultLayout)
+        {
+            <link rel="stylesheet" href="~/css/dark_theme.css" />
+        }
     </environment>
 </head>
 <body id="site">
 
-    <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark indigo">
         <!-- Navbar brand -->
-        <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><i class="fa fa-sticky-note-o" aria-hidden="true"></i>&nbsp;NotePro</a>
+        <a asp-controller="Home" asp-action="Index" class="navbar-brand"><i class="fa fa-sticky-note-o" aria-hidden="true"></i>&nbsp;NotePro</a>
 
         <!-- Collapse button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -39,17 +50,18 @@
         <!-- Collapsible content -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-            <!-- Links -->
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">My Notes</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">My Notes</a></li>
             </ul>
-            <!-- Links -->
-            <!-- New Note-->
-            <a class="btn btn-default" asp-area="" asp-controller="Home" asp-action="NewNote" role="button">New Note</a>
+
+            <a class="btn btn-default" asp-controller="Home" asp-action="NewNote" role="button">New Note</a>
+            
+            <a class="btn btn-default" asp-controller="Home" asp-action="ToggleLayout" role="button">Style Switcher</a>
+            
         </div>
         <!-- Collapsible content -->
     </nav>
-    <!--/.Navbar-->
+
     <div class="container body-content">
         @RenderBody()
     </div>

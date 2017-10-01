@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,9 +28,13 @@ namespace NotePro
             services.AddTransient<INoteDataPreparation, NoteDataPreparation>();
             services.AddTransient<DataGenerator, DataGenerator>();
             services.AddMvc();
-            // Add CookieTempDataProvider after AddMvc and include ViewFeatures.
-            // using Microsoft.AspNetCore.Mvc.ViewFeatures;
-            services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
+            // Adds a default in-memory implementation of IDistributedCache.
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = ".StyleSwitcher.Session";
+                options.IdleTimeout = TimeSpan.FromMinutes(15);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +52,9 @@ namespace NotePro
             }
 
             app.UseStaticFiles();
+
+            // IMPORTANT: This session call MUST go before UseMvc()
+            app.UseSession();
 
             app.UseMvc(routes =>
             {
