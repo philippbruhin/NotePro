@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +28,9 @@ namespace NotePro
             services.AddTransient<INoteDataPreparation, NoteDataPreparation>();
             services.AddTransient<DataGenerator, DataGenerator>();
             services.AddMvc();
+            // Add CookieTempDataProvider after AddMvc and include ViewFeatures.
+            // using Microsoft.AspNetCore.Mvc.ViewFeatures;
+            services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
