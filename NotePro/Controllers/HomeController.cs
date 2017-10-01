@@ -49,7 +49,7 @@ namespace NotePro.Controllers
 
             if (note == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
             return View("Note", note);
