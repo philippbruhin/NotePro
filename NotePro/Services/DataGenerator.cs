@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using NotePro.DataStorage;
 using NotePro.Models;
-using NotePro.DataStorage;
-using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace NotePro.Services
 {

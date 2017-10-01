@@ -1,17 +1,13 @@
-using System;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using NotePro.Controllers;
+using NotePro.DataStorage;
 using NotePro.Models;
 using NotePro.Services;
-using NotePro.DataStorage;
-using Xunit;
+using System;
 using System.Net;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Xunit;
 
 
 namespace XUnitTestProject1

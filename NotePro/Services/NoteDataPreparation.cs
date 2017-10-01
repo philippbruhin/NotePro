@@ -1,9 +1,7 @@
-﻿using System;
+﻿using NotePro.Models;
+using NotePro.Utilities;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using NotePro.Utilities;
-using NotePro.Models;
 
 namespace NotePro.Services
 {

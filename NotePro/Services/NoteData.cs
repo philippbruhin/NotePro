@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using NotePro.DataStorage;
+using NotePro.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NotePro.Models;
-using NotePro.DataStorage;
-using Microsoft.EntityFrameworkCore;
 
 namespace NotePro.Services
 {

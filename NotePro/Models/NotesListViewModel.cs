@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using NotePro.Utilities;
+﻿using NotePro.Utilities;
+using System.Collections.Generic;
 
 namespace NotePro.Models
 {
