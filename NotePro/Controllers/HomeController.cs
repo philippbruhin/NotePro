@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using NotePro.Models;
 using NotePro.Services;
 using NotePro.Utilities;
@@ -7,6 +6,7 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using NotePro.DataStorage;
+using Microsoft.AspNetCore.Http;
 
 namespace NotePro.Controllers
 {

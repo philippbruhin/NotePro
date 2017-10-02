@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using NotePro.ExtensionMethods;
+using NotePro.Models;
 
 namespace NotePro.DataStorage
 {
@@ -14,6 +11,7 @@ namespace NotePro.DataStorage
         public ApplicationSession(ISession session)
         {
             this._session = session;
+            _session.GetBoolean("Application.DefaultLayout", true);
         }
 
         public bool DefaultLayout
