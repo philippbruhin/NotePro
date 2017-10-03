@@ -52,7 +52,11 @@
                 var now = DateTime.Now;
 
 
-                if (Model.Notes.Any())
+                if (Model == null || Model.Notes == null)
+                {
+                    <p><a asp-controller="Home" asp-action="NewNote">Add a note</a> to be listed here.</p>
+                }
+                else
                 {
                     //NUll check for Model
                     foreach (var item in Model.Notes)
@@ -131,9 +135,7 @@
                         </div>
                     }
                 }
-                else
-                {<p><a asp-controller="Home" asp-action="NewNote">Add a note</a> to be listed here.
-                 </p>}
+                
             }
         </div><!-- .note-list -->
         
