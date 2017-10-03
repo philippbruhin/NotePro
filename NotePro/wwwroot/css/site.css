@@ -55,13 +55,13 @@ textarea.md-textarea {
 
 .body-content {
     flex: 1 0 auto; /* 2 */
-    padding: var(--space) var(--space) 0;
+    padding: 0;
     width: 100%;
 }
 .body-content::after {
     content: '\00a0'; /* &nbsp; */
     display: block;
-    margin-top: var(--space);
+    margin-top: 0;
     height: 0px;
     visibility: hidden;
 }
