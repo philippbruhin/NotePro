@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotePro", "NotePro\NotePro.csproj", "{D1410646-6D51-4F74-ADFF-30DCEA66601C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestProject1", "XUnitTestProject1\XUnitTestProject1.csproj", "{E385500E-C3A8-4D43-8370-C068D967045B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestNotePro", "XUnitTestProject1\XUnitTestNotePro.csproj", "{E385500E-C3A8-4D43-8370-C068D967045B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
