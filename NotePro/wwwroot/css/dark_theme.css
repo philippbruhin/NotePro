@@ -1,3 +1,62 @@
 ﻿body {
+    color: #fff;
     background-color: #000;
+}
+
+.note-list .note {
+    border: 1px solid #fff;
+}
+
+hr {
+    border-top: 1px solid #fff;
+}
+
+.hoverable {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.z-depth-1 {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+footer {
+    color: #000;
+}
+
+.grey-text {
+    color: #fff !important;
+}
+
+.md-form label, .priority-title, .rating > label:before, .finished, .form-control {
+    color: #fff;
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=url],
+input[type=time],
+input[type=date],
+input[type=datetime-local],
+input[type=tel],
+input[type=number],
+input[type=search-md],
+input[type=search],
+textarea.md-textarea,
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=url]:focus,
+input[type=time]:focus,
+input[type=date]:focus,
+input[type=datetime-local]:focus,
+input[type=tel]:focus,
+input[type=number]:focus,
+input[type=search-md]:focus,
+input[type=search]:focus,
+textarea.md-textarea:focus {
+    color: #fff;
+    border-bottom: 1px solid #fff;
 }
