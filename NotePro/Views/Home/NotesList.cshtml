@@ -12,107 +12,125 @@
 
 <h2>Note List</h2>
 
-<div class="btn-group">
-
-    @for (int i = 0; i < Enum.GetValues(typeof(SortOption)).Length; i++)
-    {
-        var sortOption = (SortOption)i;
-        var displayName = HtmlExtension<SortOption>.GetDisplayName(sortOption);
-        var sortActive = Model.SortOption == sortOption ? "active" : "";
-
-        <a asp-action="Index" class="btn grey darken-1 @sortActive" asp-route-sortoptionindex="@i" asp-route-filteroptionindex="@currentFilterOption">@displayName</a>
-    }
-</div>
-
-<div class="btn-group">
-    @for (int i = 0; i < Enum.GetValues(typeof(FilterOption)).Length; i++)
-    {
-        var filterOption = (FilterOption)i;
-        var displayName = HtmlExtension<FilterOption>.GetDisplayName(filterOption);
-        var filterActive = Model.FilterOption == filterOption ? "active" : "";
-
-        <a asp-action="Index" class="btn grey darken-1 @filterActive" asp-route-sortoptionindex="@currentSortOption" asp-route-filteroptionindex="@i">@displayName</a>
-    }
-</div>
-
-<div class="note-list">
-    @{
-        var labelCreationDate = Html.DisplayNameFor(model => model.Notes.FirstOrDefault<Note>().CreationDate) + ":";
-        var labelDueDate = Html.DisplayNameFor(model => model.Notes.FirstOrDefault<Note>().DueDate) + ":";
-        var now = DateTime.Now;
-
-
-        if (Model.Notes.Any()){ //NUll check for Model
-            foreach (var item in Model.Notes)
-            {
-
-                var isOverdue = now > item.DueDate;
-                var isOverdueSoon = now.AddDays(3) > item.DueDate;
-                var styleOverdue = isOverdue ? "text-danger" : isOverdueSoon ? "text-warning" : "";
-                var prio = item.Priority;
-
-
-                <div class="note z-depth-1 hoverable">
-                
-                <div class="row">
-                    
-                    <div class="col-12 col-md-8 col-lg-9">
-                        <h3 class="">@Html.DisplayFor(modelItem => item.Title)</h3>
-                    </div>
-                        
-                    <div class="col-12 col-md-4 col-lg-3 text-md-right">
-                        <p class="h3">
-                            @for (var i = 0; i < prio; i++)
-                            {<i class="fa fa-star" aria-hidden="true"></i>
-                            }
-                            @for (var i = 0; i < 5 - prio; i++)
-                            {<i class="h3 fa fa-star-o" aria-hidden="true"></i>
-                            }
-                        </p>
-                    </div>
-                </div>
+<div class="row">
+    <div class="col-12 col-md-12 col-lg-4 col-xl-12">
     
-                <hr />
+        <div class="btn-group">
 
-                <p>@Html.DisplayFor(modelItem => item.Description)</p>
-                
-                <hr />
+            @for (int i = 0; i < Enum.GetValues(typeof(SortOption)).Length; i++)
+            {
+                var sortOption = (SortOption) i;
+                var displayName = HtmlExtension<SortOption>.GetDisplayName(sortOption);
+                var sortActive = Model.SortOption == sortOption ? "" : "darken-1";
 
-                    <div class="row">
-                    
-                        <div class="col-12 col-md-4">
-                            <p>@labelCreationDate @Html.DisplayFor(modelItem => item.CreationDate)</p>
-                        </div>
-                        
-                        <div class="col-12 col-md-4">
-                            <p class="@styleOverdue">
-                                @labelDueDate @Html.DisplayFor(modelItem => item.DueDate)
-
-                                @if (isOverdue)
-                                {
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                }
-                                else if (isOverdueSoon)
-                                {
-                                    <i class="fa fa-hourglass-end" aria-hidden="true"></i>
-                                }
-                                else
-                                {
-                                    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-                                }
-                            </p>
-                        </div>
-                        <div class="col-12 col-md-4 text-md-right">
-                            <a class="btn red darken-4 btn-sm delete-note" asp-action="DeleteNote" asp-route-id="@item.Id" asp-route-filteroptionindex="@currentFilterOption" asp-route-sortoptionindex="@currentSortOption" asp-method="delete">Delete</a>
-                            <a class="btn grey darken-1 btn-sm" asp-action="EditNote" asp-route-id="@item.Id">Edit</a>
-                        </div>
-                    </div>
-            </div>
+                <a asp-action="Index" class="btn grey @sortActive" asp-route-sortoptionindex="@i" asp-route-filteroptionindex="@currentFilterOption">@displayName</a>
             }
-        }else{<p><a asp-controller="Home" asp-action="NewNote">Add a note</a> to be listed here.</p>}
-    }   
-</div>
+        </div>
+
+        <div class="btn-group">
+            @for (int i = 0; i < Enum.GetValues(typeof(FilterOption)).Length; i++)
+            {
+                var filterOption = (FilterOption) i;
+                var displayName = HtmlExtension<FilterOption>.GetDisplayName(filterOption);
+                var filterActive = Model.FilterOption == filterOption ? "" : "darken-1";
+
+                <a asp-action="Index" class="btn grey @filterActive" asp-route-sortoptionindex="@currentSortOption" asp-route-filteroptionindex="@i">@displayName</a>
+            }
+        </div>
+
+        <div class="btn-group float-md-right">
+            <a class="btn grey darken-1" asp-controller="Home" asp-action="ToggleLayout" role="button">Style Switcher</a>
+        </div>
+
+    </div>
+    <div class="col-12 col-md-12 col-lg-8 col-xl-12">
+    
+        <div class="note-list">
+            @{
+                var labelCreationDate = Html.DisplayNameFor(model => model.Notes.FirstOrDefault<Note>().CreationDate) + ":";
+                var labelDueDate = Html.DisplayNameFor(model => model.Notes.FirstOrDefault<Note>().DueDate) + ":";
+                var now = DateTime.Now;
+
+
+                if (Model.Notes.Any())
+                {
+                    //NUll check for Model
+                    foreach (var item in Model.Notes)
+                    {
+
+                        var isOverdue = now > item.DueDate;
+                        var isOverdueSoon = now.AddDays(3) > item.DueDate;
+                        var styleOverdue = isOverdue ? "text-danger" : isOverdueSoon ? "text-warning" : "text-success";
+                        var prio = item.Priority;
+
+
+                        <div class="note z-depth-1 hoverable">
+
+                            <div class="row">
+
+                                <div class="col-12 col-md-8 col-lg-9">
+                                    <h3 class="">@Html.DisplayFor(modelItem => item.Title)</h3>
+                                </div>
+
+                                <div class="col-12 col-md-4 col-lg-3 text-md-right">
+                                    <p class="h3">
+                                        @for (var i = 0; i < prio; i++)
+                                        {<i class="fa fa-star" aria-hidden="true"></i>
+                                        }
+                                        @for (var i = 0; i < 5 - prio; i++)
+                                        {<i class="h3 fa fa-star-o" aria-hidden="true"></i>
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+
+                            <hr/>
+
+                            <p>@Html.DisplayFor(modelItem => item.Description)</p>
+
+                            <hr/>
+
+                            <div class="row">
+
+                                <div class="col-12 col-md-4">
+                                    <p>@labelCreationDate @Html.DisplayFor(modelItem => item.CreationDate)</p>
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <p class="@styleOverdue">
+                                        @labelDueDate @Html.DisplayFor(modelItem => item.DueDate)
+
+                                        @if (isOverdue)
+                                        {
+                                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                        }
+                                        else if (isOverdueSoon)
+                                        {
+                                            <i class="fa fa-hourglass-end" aria-hidden="true"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                                        }
+                                    </p>
+                                </div>
+                                <div class="col-12 col-md-4 text-md-right">
+                                    <a class="btn red darken-4 btn-sm delete-note" asp-action="DeleteNote" asp-route-id="@item.Id" asp-route-filteroptionindex="@currentFilterOption" asp-route-sortoptionindex="@currentSortOption" asp-method="delete">Delete</a>
+                                    <a class="btn grey darken-1 btn-sm" asp-action="EditNote" asp-route-id="@item.Id">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {<p><a asp-controller="Home" asp-action="NewNote">Add a note</a> to be listed here.
+                 </p>}
+            }
+        </div><!-- .note-list -->
+        
+    </div>
+ </div><!-- .row -->
 
 @section Scripts {
-    <script src="~/js/note-list.js"></script>
-}
+        <script src="~/js/note-list.js"></script>
+    }
