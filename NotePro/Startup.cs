@@ -60,6 +60,9 @@ namespace NotePro
             // IMPORTANT: This session call MUST go before UseMvc()
             app.UseSession();
 
+            // Rich status code page
+            app.UseStatusCodePages();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
