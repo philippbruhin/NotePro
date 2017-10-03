@@ -62,9 +62,17 @@
                         var isOverdueSoon = now.AddDays(3) > item.DueDate;
                         var styleOverdue = isOverdue ? "text-danger" : isOverdueSoon ? "text-warning" : "text-success";
                         var prio = item.Priority;
+                        var finished = item.Finished;
 
 
                         <div class="note z-depth-1 hoverable">
+                            
+
+                            @if (finished==true)
+                            {
+                                <span class="badge badge-success note-status">Task finished</span>
+                            }
+
 
                             <div class="row">
 
@@ -114,8 +122,9 @@
                                         }
                                     </p>
                                 </div>
+
                                 <div class="col-12 col-md-4 text-md-right">
-                                    <a class="btn red darken-4 btn-sm delete-note" asp-action="DeleteNote" asp-route-id="@item.Id" asp-route-filteroptionindex="@currentFilterOption" asp-route-sortoptionindex="@currentSortOption" asp-method="delete">Delete</a>
+                                    <a class="btn btn-danger btn-sm delete-note" asp-action="DeleteNote" asp-route-id="@item.Id" asp-route-filteroptionindex="@currentFilterOption" asp-route-sortoptionindex="@currentSortOption" asp-method="delete">Delete</a>
                                     <a class="btn grey darken-1 btn-sm" asp-action="EditNote" asp-route-id="@item.Id">Edit</a>
                                 </div>
                             </div>

@@ -83,6 +83,13 @@ textarea.md-textarea {
 .note-list .note {
     margin-bottom: 2rem;
     padding: 2rem;
+    position: relative;
+}
+
+.note-list .note .note-status {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 /* Sticky footer styles */
