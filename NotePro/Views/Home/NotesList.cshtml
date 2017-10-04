@@ -52,7 +52,7 @@
                 var now = DateTime.Now;
 
 
-                if (Model.Notes.Any())
+                if (!Model.Notes.Any())
                 {
                     <p>Nothing to be listed here. Check note filters above and <a asp-controller="Home" asp-action="NewNote">add a note</a>.</p>
                 }
