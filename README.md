@@ -1,10 +1,12 @@
 # NotePro
-ASP.NET Core Webapplication for note management with in memory database. Live site of project on [http://notepro.azurewebsites.net](http://notepro.azurewebsites.net).
+ASP.NET Core Webapplication for **note management with in memory database**. Deployed application of this project on [http://notepro.azurewebsites.net](http://notepro.azurewebsites.net).
 
 ## About this project
 This note application has been developed as part of the course “Web technologies advanced frameworks” in the Master of Advanced Studies program Software Engineering at HSR.
 
 HSR (German: Hochschule für Technik Rapperswil) or [University of Applied Sciences Rapperswil](https://www.hsr.ch) is a technical university in Rapperswil, Switzerland.
+
+Due to the fact that this is a school assignment the **project will not be developed further after October 2017.**
 
 ## Credits
 * [ASP.NET Core](https://github.com/aspnet/Home) - ASP.NET Core is a lean and composable framework for building web and cloud applications.
