@@ -8,6 +8,15 @@ HSR (German: Hochschule für Technik Rapperswil) or [University of Applied Scien
 
 Due to the fact that this is a school assignment the **project will not be developed further after October 2017.**
 
+###Implementation
+* Based on Microsoft .Net Core MVC template
+* Create, read, update and delete notes inclusive filtering & sorting option
+* Session based style switcher
+* Asynchronous in memory database
+* HtmlExtension class for enum type DisplayName
+* Status code page (Error 404 and so on)
+* Frontend based on Google material design
+
 ## Credits
 * [ASP.NET Core](https://github.com/aspnet/Home) - ASP.NET Core is a lean and composable framework for building web and cloud applications.
 * [Twitter Bootstrap 4](https://getbootstrap.com/) - The most popular HTML, CSS, and JS library in the world.
