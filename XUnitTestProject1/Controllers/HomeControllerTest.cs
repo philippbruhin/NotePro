@@ -5,15 +5,25 @@ using NotePro.Controllers;
 using NotePro.DataStorage;
 using NotePro.Models;
 using NotePro.Services;
+using NotePro.Tests.Controllers;
 using System;
 using System.Net;
 using Xunit;
 
 
-namespace XUnitTestProject1
+namespace XUnitTestNotePro
 {
-    public class UnitTest1
-    {   
+    public class HomeControllerTest
+    {
+
+        private readonly IServiceProvider _serviceProvider;
+        private readonly FakeHttpContextAccessor _fakeHttpContextAccessor;
+
+
+        public HomeControllerTest()
+        {
+            _fakeHttpContextAccessor = new FakeHttpContextAccessor();
+        }
 
         [Fact]
         public async void ShouldReturn404DueToMissingNote()
@@ -23,10 +33,11 @@ namespace XUnitTestProject1
             services.AddDbContext<DbContextDefault>(options => options.UseInMemoryDatabase("NoteDatabase"));
 
             var serviceProvider = services.BuildServiceProvider();
+
             var dbContext = serviceProvider.GetService<DbContextDefault>();
             var noteData = new NoteData(dbContext);
             var noteDataPreparation = new NoteDataPreparation();
-            var controller = new HomeController(noteData, noteDataPreparation);
+            var controller = new HomeController(noteData, noteDataPreparation, _fakeHttpContextAccessor);
             var result =  (StatusCodeResult) await controller.EditNote(-1);
 
             Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
@@ -44,7 +55,7 @@ namespace XUnitTestProject1
 
             var noteData = new NoteData(dbContext);
             var noteDataPreparation = new NoteDataPreparation();
-            var controller = new HomeController(noteData, noteDataPreparation);
+            var controller = new HomeController(noteData, noteDataPreparation, _fakeHttpContextAccessor);
 
             var note = new Note
             {
