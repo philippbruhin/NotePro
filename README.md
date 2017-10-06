@@ -11,6 +11,7 @@ Due to the fact that this is a school assignment the **project will not be devel
 ### Implementation
 * Based on Microsoft .Net Core MVC template
 * Create, read, update and delete notes inclusive filtering & sorting option
+* Unit testing
 * Session based style switcher
 * Asynchronous in memory database
 * HtmlExtension class for enum type DisplayName
