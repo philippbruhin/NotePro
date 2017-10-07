@@ -9,7 +9,7 @@
     
     <div class="md-form">
         <i class="fa fa-tag prefix grey-text"></i>
-        <input class="form-control" asp-for="Title"/>
+        <input class="form-control" asp-for="Title" length="60"/>
         <label asp-for="Title" data-toggle="tooltip" data-placement="top" title="Every note needs a title.">@Html.DisplayNameFor(Model => Model.Title):</label>
         <span asp-validation-for="Title" class="text-danger push-left"></span>
        @{if (Model != null)
@@ -21,7 +21,7 @@
         
     <div class="md-form">
         <i class="fa fa-pencil prefix grey-text"></i>
-        <textarea class="md-textarea" asp-for="Description" rows="6" length="1000"></textarea>
+        <textarea id="description-area" class="md-textarea" asp-for="Description" rows="6" length="1000"></textarea>
         <label asp-for="Description" data-toggle="tooltip" data-placement="top" title="Add a short description of your note.">@Html.DisplayNameFor(Model => Model.Description):</label>
         <span asp-validation-for="Description" class="text-danger push-left"></span>
     </div>
@@ -75,7 +75,6 @@
 </form>
 
 @section Scripts {
-    <script src="~/js/picker-date.js"></script>
     <script>
         // Date Picker Initialization
         $('.datepicker').pickadate({
