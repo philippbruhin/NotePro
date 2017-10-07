@@ -8,7 +8,7 @@ namespace NotePro.Models
         public long Id { get;  set; }
 
         [Display(Name ="Creation Date")]
-        public DateTime CreationDate { get; private set; }
+        public DateTime CreationDate { get; set; }
 
         [Required(ErrorMessage = "Please enter a title for this note.")]
         [StringLength(60, MinimumLength = 3)]
@@ -31,11 +31,6 @@ namespace NotePro.Models
         public DateTime DueDate { get; set; }
 
         public bool Finished { get; set; }
-
-        public Note()
-        {
-                CreationDate = DateTime.Now;
-        }
 
     }
 }

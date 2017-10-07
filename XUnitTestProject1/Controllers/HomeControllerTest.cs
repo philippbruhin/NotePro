@@ -9,7 +9,6 @@ using NotePro.Tests.Controllers;
 using System;
 using System.Net;
 using Xunit;
-using Microsoft.AspNetCore.Http;
 
 
 namespace XUnitTestNotePro
