@@ -38,29 +38,38 @@
 </head>
 <body id="site">
 
-    <nav class="navbar navbar-expand-lg navbar-dark indigo">
-        <!-- Navbar brand -->
-        <a asp-controller="Home" asp-action="Index" class="navbar-brand"><i class="fa fa-sticky-note-o" aria-hidden="true"></i>&nbsp;NotePro</a>
+<nav class="navbar navbar-expand-lg navbar-dark indigo">
+    <!-- Navbar brand -->
+    <a asp-controller="Home" asp-action="Index" class="navbar-brand"><i class="fa fa-sticky-note-o" aria-hidden="true"></i>&nbsp;NotePro</a>
 
-        <!-- Collapse button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Collapsible content -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">My Notes</a></li>
-            </ul>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">My Notes</a></li>
+        </ul>
 
-            <a class="btn grey darken-1" asp-controller="Home" asp-action="NewNote" role="button">New Note<i class="fa fa-plus-circle ml-1"></i></a>
+        <a class="btn grey darken-1" asp-controller="Home" asp-action="NewNote" role="button">New Note<i class="fa fa-plus-circle ml-1"></i></a>
            
-        </div>
-        <!-- Collapsible content -->
-    </nav>
+    </div>
+    <!-- Collapsible content -->
+</nav>
 
-    <div class="container body-content">
+<noscript>    
+    <div class="jumbotron text-center warning-color">
+        <div class="container">
+            <p class="font-weight-bold">Your browser does not support JavaScript!</p>
+            <p>Without JavaScript you won’t be able using the services on this website unfortunately. So please enable JavaScript as shown on <a href="https://www.enable-javascript.com/" target="_blank">www.enable-javascript.com</a>.</p>
+        </div>
+    </div>
+</noscript>
+
+<div class="container body-content">
         @RenderBody()
     </div>
 
