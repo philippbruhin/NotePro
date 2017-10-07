@@ -3,7 +3,6 @@ using NotePro.Models;
 using NotePro.Services;
 using NotePro.Utilities;
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using NotePro.DataStorage;
 using Microsoft.AspNetCore.Http;

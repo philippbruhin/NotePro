@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using NotePro.ExtensionMethods;
-using NotePro.Models;
 
 namespace NotePro.DataStorage
 {
