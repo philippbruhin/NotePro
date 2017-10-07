@@ -18,6 +18,7 @@ namespace NotePro.Services
 
         public async Task AddNoteAsync(Note note)
         {
+            note.CreationDate = DateTime.Now;
 
             await dbContext.AddAsync(note);
             await dbContext.SaveChangesAsync();
