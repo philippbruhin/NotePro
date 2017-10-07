@@ -16,45 +16,44 @@ namespace XUnitTestNotePro
     public class HomeControllerTest
     {
 
-        private readonly FakeHttpContextAccessor _fakeHttpContextAccessor;
+        private readonly FakeHttpContextAccessor fakeHttpContextAccessor;
 
+        private readonly IServiceProvider serviceProvider;
+        private readonly DbContextDefault dbContext;
+        private readonly NoteData noteData;
+        private readonly NoteDataPreparation noteDataPreparation;
+        private readonly ServiceCollection services;
 
         public HomeControllerTest()
         {
-            _fakeHttpContextAccessor = new FakeHttpContextAccessor();
+            fakeHttpContextAccessor = new FakeHttpContextAccessor();
+
+            services = new ServiceCollection();
+            services.AddDbContext<DbContextDefault>(options => options.UseInMemoryDatabase("NoteDatabase"));
+            serviceProvider = services.BuildServiceProvider();
+            dbContext = serviceProvider.GetService<DbContextDefault>();
+            noteData = new NoteData(dbContext);
+            noteDataPreparation = new NoteDataPreparation();
         }
 
         [Fact]
         public async void ShouldReturn404DueToMissingNote()
         {
-            var services = new ServiceCollection();
+            // Arrange
+            var controller = new HomeController(noteData, noteDataPreparation, fakeHttpContextAccessor);
 
-            services.AddDbContext<DbContextDefault>(options => options.UseInMemoryDatabase("NoteDatabase"));
-
-            var serviceProvider = services.BuildServiceProvider();
-
-            var dbContext = serviceProvider.GetService<DbContextDefault>();
-            var noteData = new NoteData(dbContext);
-            var noteDataPreparation = new NoteDataPreparation();
-            var controller = new HomeController(noteData, noteDataPreparation, _fakeHttpContextAccessor);
+            // Act
             var result =  (StatusCodeResult) await controller.EditNote(-1);
 
+            // Assert
             Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
         }
 
         [Fact]
         public async void ShouldUpdateANoteSuccessfully()
         {
-            var services = new ServiceCollection();
-
-            services.AddDbContext<DbContextDefault>(options => options.UseInMemoryDatabase("NoteDatabase"));
-
-            var serviceProvider = services.BuildServiceProvider();
-            var dbContext = serviceProvider.GetService<DbContextDefault>();
-
-            var noteData = new NoteData(dbContext);
-            var noteDataPreparation = new NoteDataPreparation();
-            var controller = new HomeController(noteData, noteDataPreparation, _fakeHttpContextAccessor);
+            // Arrange
+            var controller = new HomeController(noteData, noteDataPreparation, fakeHttpContextAccessor);
 
             var note = new Note
             {
@@ -73,12 +72,14 @@ namespace XUnitTestNotePro
             note = await noteData.GetNoteAsync(note.Id);
             note.DueDate = DateTime.Parse("31.10.2017");
 
+            // Act
             // Update Database with amended Due Date
             await controller.UpdateNote(note);
 
             // Get Note with updated Due Date from Database;
             var result = await noteData.GetNoteAsync(note.Id);
 
+            // Assert
             Assert.Equal(result, note);
         }
 
