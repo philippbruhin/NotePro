@@ -19,6 +19,13 @@ Due to the fact that this is a school assignment the **project will not be devel
 * Frontend based on [Google material design](https://material.io/) with CSS3 animations
 * No script warning
 
+## Screenshots
+Frontpage where notes are listed and can be sorted and/or filtered.
+![Homepage](https://github.com/philippbruhin/NotePro/blob/master/NotePro/wwwroot/images/notepro-screenshot-notelist.png "Homepage of NotePro")
+
+Adding a new note.
+![How to add a new note](https://github.com/philippbruhin/NotePro/blob/master/NotePro/wwwroot/images/notepro-screenshot-addnote.png "Adding a new note")
+
 ## Credits
 * [ASP.NET Core](https://github.com/aspnet/Home) - ASP.NET Core is a lean and composable framework for building web and cloud applications.
 * [Twitter Bootstrap 4](https://getbootstrap.com/) - The most popular HTML, CSS, and JS library in the world.
