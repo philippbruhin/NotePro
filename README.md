@@ -8,7 +8,7 @@ HSR (German: Hochschule für Technik Rapperswil) or [University of Applied Scien
 
 Due to the fact that this is a school assignment the **project will not be developed further after October 2017.**
 
-### Implementation
+## Implementation
 * Based on Microsoft .Net Core MVC template
 * Create, read, update and delete notes inclusive filtering & sorting option
 * Unit testing
