@@ -34,7 +34,7 @@ namespace NotePro.Models
 
         public Note()
         {
-            CreationDate = DateTime.Now;
+                CreationDate = DateTime.Now;
         }
 
     }
