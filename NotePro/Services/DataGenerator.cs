@@ -16,7 +16,9 @@ namespace NotePro.Services
                 Title = "Call my mummy",
                 Description = "It's her birthday",
                 DueDate = DateTime.Parse("25.11.2017"),
-                Priority = 5
+                Priority = 5,
+                CreationDate = DateTime.Now.AddSeconds(-5)
+
             };
 
             noteData.AddNoteAsync(note);
@@ -27,7 +29,8 @@ namespace NotePro.Services
                 Description = "Panthene Pro V",
                 DueDate = DateTime.Now.AddDays(2),
                 Priority = 2,
-                Finished = false
+                Finished = false,
+                CreationDate = DateTime.Now.AddSeconds(-10)
             };
             noteData.AddNoteAsync(note);
 
@@ -37,7 +40,9 @@ namespace NotePro.Services
                 Description = "Make sure that it works",
                 DueDate = DateTime.Parse("08.10.2017"),
                 Priority = 4,
-                Finished = false
+                Finished = false,
+                CreationDate = DateTime.Now.AddSeconds(-15)
+
             };
             noteData.AddNoteAsync(note);
 
@@ -47,7 +52,8 @@ namespace NotePro.Services
                 Description = "Call according administrative authority in Zug.",
                 DueDate = DateTime.Parse("30.09.2017"),
                 Priority = 3,
-                Finished = false
+                Finished = false,
+                CreationDate = DateTime.Now.AddSeconds(-20)
             };
             noteData.AddNoteAsync(note);
 
@@ -57,7 +63,8 @@ namespace NotePro.Services
                 Description = "Option 3 seems suitable",
                 DueDate = DateTime.Parse("30.12.2017"),
                 Priority = 3,
-                Finished = true
+                Finished = true,
+                CreationDate = DateTime.Now.AddSeconds(-25)
             };
             noteData.AddNoteAsync(note);
 
@@ -67,7 +74,8 @@ namespace NotePro.Services
                 Description = "No soy milk.",
                 DueDate = DateTime.Now.AddDays(-1),
                 Priority = 1,
-                Finished = false
+                Finished = false,
+                CreationDate = DateTime.Now.AddSeconds(-30)
             };
             noteData.AddNoteAsync(note);
 
@@ -77,7 +85,8 @@ namespace NotePro.Services
                 Description = "Buy spaghetti at Migros.",
                 DueDate = DateTime.Now.AddDays(2),
                 Priority = 1,
-                Finished = false
+                Finished = false,
+                CreationDate = DateTime.Now.AddSeconds(-35)
             };
             noteData.AddNoteAsync(note);
 
@@ -87,7 +96,8 @@ namespace NotePro.Services
                 Description = "Watch on SRF1 regarding Korea Conflict.",
                 DueDate = DateTime.Now,
                 Priority = 1,
-                Finished = false
+                Finished = false,
+                CreationDate = DateTime.Now.AddSeconds(-40)
             };
             noteData.AddNoteAsync(note);
 
@@ -97,7 +107,8 @@ namespace NotePro.Services
                 Description = "Blablabla",
                 DueDate = DateTime.Now.AddDays(+8),
                 Priority = 1,
-                Finished = false
+                Finished = false,
+                CreationDate = DateTime.Now.AddSeconds(-45)
             };
             noteData.AddNoteAsync(note);
 
@@ -107,7 +118,8 @@ namespace NotePro.Services
                 Description = "For weekend. Quöllfrisch only!",
                 DueDate = DateTime.Now.AddDays(+1),
                 Priority = 1,
-                Finished = false
+                Finished = false,
+                CreationDate = DateTime.Now.AddSeconds(-50)
             };
             noteData.AddNoteAsync(note);
 
@@ -117,7 +129,8 @@ namespace NotePro.Services
                 Description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu. T",
                 DueDate = DateTime.Now.AddDays(+100),
                 Priority = 1,
-                Finished = false
+                Finished = false,
+                CreationDate = DateTime.Now.AddSeconds(-55)
             };
             noteData.AddNoteAsync(note);
 
