@@ -1,5 +1,5 @@
 # NotePro
-ASP.NET Core Webapplication for **note management with in memory database**. Deployed application of this project on [http://notepro.azurewebsites.net](http://notepro.azurewebsites.net).
+ASP.NET Core Webapplication for **note management with in-memory database**. Deployed application of this project on [http://notepro.azurewebsites.net](http://notepro.azurewebsites.net).
 
 ## About this project
 This note application has been developed as part of the course “Web technologies advanced frameworks” in the Master of Advanced Studies program Software Engineering at HSR.
@@ -13,10 +13,11 @@ Due to the fact that this is a school assignment the **project will not be devel
 * Create, read, update and delete notes inclusive filtering & sorting option
 * Unit testing
 * Session based style switcher
-* Asynchronous in memory database
+* Asynchronous [in-memory database](https://en.wikipedia.org/wiki/In-memory_database)
 * HtmlExtension class for enum type DisplayName
 * Status code page (Error 404 and so on)
-* Frontend based on Google material design
+* Frontend based on [Google material design](https://material.io/) with CSS3 animations
+* No script warning
 
 ## Credits
 * [ASP.NET Core](https://github.com/aspnet/Home) - ASP.NET Core is a lean and composable framework for building web and cloud applications.
