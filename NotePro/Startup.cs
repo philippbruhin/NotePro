@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Session;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,7 +38,7 @@ namespace NotePro
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(15);
             });
-            // Session
+            // The IHttpContextAccessor service is not registered by default, so:
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
         }
@@ -45,6 +46,9 @@ namespace NotePro
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
+            // IMPORTANT: This session call MUST go before UseMvc()
+            app.UseSession();
 
             if (env.IsDevelopment())
             {
@@ -58,9 +62,6 @@ namespace NotePro
             }
 
             app.UseStaticFiles();
-
-            // IMPORTANT: This session call MUST go before UseMvc()
-            app.UseSession();
 
             // Rich status code page
             app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
