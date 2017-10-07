@@ -37,6 +37,7 @@ namespace NotePro
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(15);
             });
+            // Session
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
         }

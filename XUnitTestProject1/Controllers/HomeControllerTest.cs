@@ -17,7 +17,6 @@ namespace XUnitTestNotePro
     public class HomeControllerTest
     {
 
-        private readonly IServiceProvider _serviceProvider;
         private readonly FakeHttpContextAccessor _fakeHttpContextAccessor;
 
 
