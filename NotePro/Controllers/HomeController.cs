@@ -14,13 +14,13 @@ namespace NotePro.Controllers
 
         private readonly INoteData noteData;
         private readonly INoteDataPreparation NoteDataPreparation;
-        private readonly ApplicationSession _session;
+        private readonly ApplicationSession session;
 
         public HomeController(INoteData noteData, INoteDataPreparation NoteDataPreparation, IHttpContextAccessor httpContextAccessor)
         {
             this.noteData = noteData ?? throw new ArgumentNullException(nameof(noteData));
             this.NoteDataPreparation = NoteDataPreparation ?? throw new ArgumentNullException(nameof(NoteDataPreparation));
-            this._session = new ApplicationSession(httpContextAccessor.HttpContext.Session);
+            this.session = new ApplicationSession(httpContextAccessor.HttpContext.Session);
         }
 
         public async Task<IActionResult> Index(int SortOptionIndex, int FilterOptionIndex)
@@ -101,7 +101,7 @@ namespace NotePro.Controllers
 
         public IActionResult ToggleLayout(int SortOptionIndex, int FilterOptionIndex)
         {
-            _session.DefaultLayout = !_session.DefaultLayout;
+            session.DefaultLayout = !session.DefaultLayout;
             return RedirectToAction("Index", new { SortOptionIndex = SortOptionIndex, FilterOptionIndex = FilterOptionIndex });
         }
 
